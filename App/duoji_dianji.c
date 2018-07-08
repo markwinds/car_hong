@@ -54,8 +54,7 @@ void dianji_canshu_init(void)//电机参数初始化
 void DSYJ_dianji_PID(int QWMC)//速度PID控制
 {
  
-            NOW_SPEED=speed_a;//
-        
+  NOW_SPEED=speed_a;//        
         //********************设置反转力度**************//
 
         int dut,men;

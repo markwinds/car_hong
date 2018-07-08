@@ -36,13 +36,14 @@ static int half_width_group[60]=
 33,33,33,33,34,34,34,35,35,35,
 36,36,36,36,37,37,38,38,38,38      
 };
+
 int regression(int startline,int endline)   //线性回归方程计算斜率      
 {
   if(endline>56)
     endline=56;
   int i;
   int sumX=0,sumY=0,avrX=0,avrY=0 ;
-   int num=0,B_up1=0,B_up2=0,B_up,B_down;
+  int num=0,B_up1=0,B_up2=0,B_up,B_down;
    for(i=startline;i<=endline;i++)
    {
             num++;
