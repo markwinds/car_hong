@@ -39,17 +39,17 @@ static int half_width_group[60]=
 
 int regression(int startline,int endline)   //线性回归方程计算斜率      
 {
-  if(endline>56)
+  	if(endline>56)
     endline=56;
-  int i;
-  int sumX=0,sumY=0,avrX=0,avrY=0 ;
-  int num=0,B_up1=0,B_up2=0,B_up,B_down;
-   for(i=startline;i<=endline;i++)
-   {
-            num++;
-            sumX+=i;
-            sumY+=currentzhongjian[i];
-   }
+  	int i;
+  	int sumX=0,sumY=0,avrX=0,avrY=0 ;
+ 	int num=0,B_up1=0,B_up2=0,B_up,B_down;
+	for(i=startline;i<=endline;i++)
+   	{
+		num++;
+		sumX+=i;
+		sumY+=currentzhongjian[i];
+   	}
    
     avrX=sumX/num;
     avrY=sumY/num;
@@ -58,11 +58,11 @@ int regression(int startline,int endline)   //线性回归方程计算斜率
     for(i=startline;i<=endline;i++)
    {
          
-       B_up1=(int)(currentzhongjian[i]-avrY);
-        B_up2=i-avrX;
-         B_up+=(int)(10*(B_up1*B_up2));
-          B_up=B_up/100*100;
-            B_down+=(int)(10*((i-avrX)*(i-avrX)));
+       	B_up1=(int)(currentzhongjian[i]-avrY);
+    	B_up2=i-avrX;
+        B_up+=(int)(10*(B_up1*B_up2));
+        B_up=B_up/100*100;
+    	B_down+=(int)(10*((i-avrX)*(i-avrX)));
     }
    if(B_down==0) 
    B=0;
@@ -75,22 +75,23 @@ int regression(int startline,int endline)   //线性回归方程计算斜率
 int hy;
 void huaxian(int x1,int y1,int x2,int y2)//将两个点之间连成一条线段
 {
-      int i,max,a1,a2;
-      a1=x1;
-      a2=x2;
-      if(a1>a2)
-      {max=a1;
-      a1=a2;
-      a2=max;}
+	int i,max,a1,a2;
+	a1=x1;
+	a2=x2;
+	if(a1>a2)
+	{
+		max=a1;
+		a1=a2;
+		a2=max;
+	}
     for(i=x1;i>0;i--)
     {
-      if((x2-x1)!=0)
-      {
-         hy=(i-x1)*(y2-y1)/(x2-x1)+y1;
-         currentzhongjian[i]=hy;
-      if(hy<=1||hy>=79)
-        break;
-      }
+		if((x2-x1)!=0)
+		{
+			hy=(i-x1)*(y2-y1)/(x2-x1)+y1;
+			currentzhongjian[i]=hy;
+			if(hy<=1||hy>=79)	break;
+		}
     }
 }
 
@@ -149,191 +150,191 @@ void servo()//舵机控制函数
 void lkcongzhongjiansaomiao()
 {
   
-      int kuan_flag=0,lo=0,s_point=0,S_COUNT=0,fuduandian=0,chushizi_flag=0,qulv_yuanhuan=0;
-      memset(shaobudaozuo_flag,0,sizeof(shaobudaozuo_flag));//清零函数
-      memset(shaobudaoyou_flag,0,sizeof(shaobudaoyou_flag));
-      int zhangai_flag=0,qulv_s_y=0,qulv_s_l=0;
-      shangshizidiyidian=0;
-      left_heixian[59]=0;
-      right_heixian[59]=79; 
-      shizishu=0;
-      rushizi=0;
-      xielv_flag=0;
-      shizi_flag=0;
-      my_lastzhongjian=39;
+	int zhangai_flag=0,qulv_s_y=0,qulv_s_l=0;
+	int kuan_flag=0,lo=0,s_point=0,S_COUNT=0,fuduandian=0,chushizi_flag=0,qulv_yuanhuan=0;
+	shangshizidiyidian=0;
+	left_heixian[59]=0;
+	right_heixian[59]=79; 
+	shizishu=0;
+	rushizi=0;
+	xielv_flag=0;
+	shizi_flag=0;
+	my_lastzhongjian=39;
+	memset(shaobudaozuo_flag,0,sizeof(shaobudaozuo_flag));//清零函数
+	memset(shaobudaoyou_flag,0,sizeof(shaobudaoyou_flag));
 
-      if(currentzhongjian[58])
-      currentzhongjian[59]=my_lastzhongjian=currentzhongjian[58];
-      else
-      currentzhongjian[59]=39;
-      for(y=58;y>=0;y--)//扫描完58，整副图像处理完毕
-      {
-          for(x=my_lastzhongjian;x<=79;x++)//从中间向右扫描
-          {
-            if(imgyiwei[y][x]==0)
-              {
-                  
-                right_heixian[y]=x;
-                shaobudaoyou_flag[y]=1;    //这里是右边丢线
-                break;
-              }
-          }
+	if(currentzhongjian[58])
+		currentzhongjian[59]=my_lastzhongjian=currentzhongjian[58];
+	else
+		currentzhongjian[59]=39;
+	for(y=58;y>=0;y--)//扫描完58，整副图像处理完毕
+	{
+		for(x=my_lastzhongjian;x<=79;x++)//从中间向右扫描
+		{
+			if(imgyiwei[y][x]==0)
+			{
+				right_heixian[y]=x;
+				shaobudaoyou_flag[y]=1;    //这里是右边丢线，1表示扫到线
+				break;
+			}
+		}
 
-            
-          for(x=my_lastzhongjian;x>=0;x--)//向左扫描
-          { 
-            if(imgyiwei[y][x]==0)
-            {
-                left_heixian[y]=x;   //记录第几列找不到线
-                shaobudaozuo_flag[y]=1;//确定某一行扫不到的标志，用1表示产生扫到，否则左边丢线
-                break;
-            }  
-          }
+		for(x=my_lastzhongjian;x>=0;x--)//向左扫描
+		{ 
+			if(imgyiwei[y][x]==0)
+			{
+				left_heixian[y]=x;   //记录第几列找不到线
+				shaobudaozuo_flag[y]=1;//确定某一行扫不到的标志，用1表示产生扫到，否则左边丢线
+				break;
+			}  
+		}
+
         if(fuduandian==0)
         {
-                if(y>48)//丢边补线，加整个赛道补线
-                {
-                     if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//扫不到右
-                        { 
-                          right_heixian[y]=left_heixian[y]+2*half_width_group[y];
-                        }
-                     else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//扫不到左
-                        {
-                          left_heixian[y]=right_heixian[y]-2*half_width_group[y];
-                        }
-                    else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//都扫不到
-                        {
-                          left_heixian[y]=0;//如果两边都扫不到，直接从中间提取中线
-                          right_heixian[y]=79;
-                        }
-                }
-                else if(y<=48)//更远的补线，
-                {
-                      if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//扫不到右
-                        { 
-                    
-                          right_heixian[y]=right_heixian[y+1]+(abs)(left_heixian[y]-left_heixian[y+1])-1;//根据左边这一点与上一点，
-                                                                                                        //（y+1）为数组中上一次的x坐标，
-                                                                          //left_heixian[y]-left_heixian[y+1]算左边偏移量，减一为后期补偿
-                        }
-                      else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//扫不到左
-                        {
-                      
-                          left_heixian[y]=left_heixian[y+1]-(abs)(right_heixian[y+1]-right_heixian[y])+1;//abs为取绝对值
-                        }
-                        
-                      else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//都扫不到
-                        {
-                          left_heixian[y]=0;
-                          right_heixian[y]=79;
-                        }
-                }  
-                    //*************************************中线处理*********************************************************//
-                  
-                currentzhongjian[y]=(int)((right_heixian[y]+left_heixian[y])/2);  //提取中间线（左边加右边比2）
-                  
-                half_zhi[y]=(int)((right_heixian[y]-left_heixian[y])/2);  //一半赛道值（没用，不改）
-                    
-                      //*******************************************************中线滤波防止中线出现毛刺**************************************************/
-                  
-                if(currentzhongjian[y]-currentzhongjian[y+1]>4&&y<42&&B<0)
-                currentzhongjian[y]=currentzhongjian[y+1]+1;
-                if(currentzhongjian[y]-currentzhongjian[y+1]<-4&&y<42&&B>0)
-                currentzhongjian[y]=currentzhongjian[y+1]-1;  
+			if(y>48)//丢边补线，加整个赛道补线
+			{
+				if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//扫不到右
+				{ 
+					right_heixian[y]=left_heixian[y]+2*half_width_group[y];
+				}
+				else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//扫不到左
+				{
+					left_heixian[y]=right_heixian[y]-2*half_width_group[y];
+				}
+				else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//都扫不到
+				{
+					left_heixian[y]=0;//如果两边都扫不到，直接从中间提取中线
+					right_heixian[y]=79;
+				}
+			}
+			else if(y<=48)//更远的补线，
+			{
+				if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//扫不到右
+				{ 
+					right_heixian[y]=right_heixian[y+1]+(abs)(left_heixian[y]-left_heixian[y+1])-1;//根据左边这一点与上一点，
+																								//（y+1）为数组中上一次的x坐标，
+																	//left_heixian[y]-left_heixian[y+1]算左边偏移量，减一为后期补偿
+				}
+				else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//扫不到左
+				{
+				
+					left_heixian[y]=left_heixian[y+1]-(abs)(right_heixian[y+1]-right_heixian[y])+1;//abs为取绝对值
+				}
+				
+				else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//都扫不到
+				{
+					left_heixian[y]=0;
+					right_heixian[y]=79;
+				}
+			}  
+
+			//*************************************中线处理*********************************************************//
+			currentzhongjian[y]=(int)((right_heixian[y]+left_heixian[y])/2);  //提取中间线（左边加右边比2）
+				
+			half_zhi[y]=(int)((right_heixian[y]-left_heixian[y])/2);  //一半赛道值（没用，不改）
+				
+			//*******************************************************中线滤波防止中线出现毛刺**************************************************/
+				
+			if(currentzhongjian[y]-currentzhongjian[y+1]>4&&y<42&&B<0)
+				currentzhongjian[y]=currentzhongjian[y+1]+1;
+			if(currentzhongjian[y]-currentzhongjian[y+1]<-4&&y<42&&B>0)
+				currentzhongjian[y]=currentzhongjian[y+1]-1;  
 
 
-                /******************************************************************曲率计算**************************************************************/
-                if(y>30)//曲率近端判断  用到变量qulv_jinduan
-                {
-                    if((currentzhongjian[y]-currentzhongjian[y+1])>0)
-                  qulv_jinduan_right++;
-                  else
-                  if((currentzhongjian[y]-currentzhongjian[y+1])<0)
-                  qulv_jinduan_left++;
-                } 
+			/******************************************************************曲率计算**************************************************************/
+			if(y>30)//曲率近端判断  用到变量qulv_jinduan
+			{
+				if((currentzhongjian[y]-currentzhongjian[y+1])>0)
+					qulv_jinduan_right++;			//近端的斜率
+				else
+				if((currentzhongjian[y]-currentzhongjian[y+1])<0)
+					qulv_jinduan_left++;
+			} 
 
 
-                if(y<25&&y>=7)//曲率远端判断，远处的一点就不要了 用到变量qulv_yuanduan
-                {
-                    if((currentzhongjian[y]-currentzhongjian[y+1])>0)
-                  qulv_yuandaun_right++;
-                  else if((currentzhongjian[y]-currentzhongjian[y+1])<0)
-                  qulv_yuandaun_left++;
-                }
-                if(y<=55&&y>10)//曲率全局判断   用到变量qulv_quanju左右
-                {
-                    if((currentzhongjian[y]-currentzhongjian[y+1])>0)
-                  qvlv_quanju_right++;
-                  else
-                  if((currentzhongjian[y]-currentzhongjian[y+1])<0)
-                  qvlv_quanju_left++;
-                }   
+			if(y<25&&y>=7)//曲率远端判断，远处的一点就不要了 用到变量qulv_yuanduan
+			{
+				if((currentzhongjian[y]-currentzhongjian[y+1])>0)
+					qulv_yuandaun_right++;			//远端的斜率
+				else 
+				if((currentzhongjian[y]-currentzhongjian[y+1])<0)
+					qulv_yuandaun_left++;
+			}
+			if(y<=55&&y>10)//曲率全局判断   用到变量qulv_quanju左右
+			{
+				if((currentzhongjian[y]-currentzhongjian[y+1])>0)
+					qvlv_quanju_right++;
+				else
+				if((currentzhongjian[y]-currentzhongjian[y+1])<0)
+					qvlv_quanju_left++;
+			}   
 
-                if(currentzhongjian[y]>79) //中线的限制幅度 x代表行数，y代表列数
-                  currentzhongjian[y]=79;
-                if(currentzhongjian[y]<0)  //这里限制在图像范围内0-79
-                  currentzhongjian[y]=0;
+			if(currentzhongjian[y]>79) //中线的限制幅度 x代表行数，y代表列数
+				currentzhongjian[y]=79;
+			if(currentzhongjian[y]<0)  //这里限制在图像范围内0-79
+				currentzhongjian[y]=0;
 
-                my_lastzhongjian=currentzhongjian[y];//保存中间点坐标
-                
-                if(0<56)//小s位置判断，小s弯道作直线冲刺
-                {
-                    if((currentzhongjian[y]-currentzhongjian[y+2])>0)
-                    qulv_s_y++;
-                    else
-                    if((currentzhongjian[y]-currentzhongjian[y+2])<0)
-                    qulv_s_l++;
-                    if(y>36&&abs(currentzhongjian[y]-currentzhongjian[y+2])>0)
-                    {
-                      qulv_yuanhuan++;
-                    }
-                    //printf("y:%d\n",qulv_s_y);
-                    //printf("l:%d\n",qulv_s_l);
-                }
-                if(y<58&&y>=10)
-                S_COUNT+=currentzhongjian[y];
-                // *******************************************小S断点搜索*********************************************//
-                if(y>8&&(abs)(right_heixian[y]-currentzhongjian[y])<5||(abs)(left_heixian[y]-currentzhongjian[y])<5)//小S断点判定
-                  s_point=y;//
-                else
-                  s_point=0;
+			my_lastzhongjian=currentzhongjian[y];//保存中间点坐标
+			
+			if(0<56)//小s位置判断，小s弯道作直线冲刺
+			{
+				if((currentzhongjian[y]-currentzhongjian[y+2])>0)
+					qulv_s_y++;
+				else 
+				if((currentzhongjian[y]-currentzhongjian[y+2])<0)
+					qulv_s_l++;
+				if(y>36&&abs(currentzhongjian[y]-currentzhongjian[y+2])>0)
+				{
+					qulv_yuanhuan++;
+				}
+				//printf("y:%d\n",qulv_s_y);
+				//printf("l:%d\n",qulv_s_l);
+			}
+			if(y<58&&y>=10)
+				S_COUNT+=currentzhongjian[y];
+			// *******************************************小S断点搜索*********************************************//
+			if(y>8&&(abs)(right_heixian[y]-currentzhongjian[y])<5||(abs)(left_heixian[y]-currentzhongjian[y])<5)//小S断点判定
+				s_point=y;//
+			else
+				s_point=0;
 
-                //****************************************************障碍判定****************************************************************//
-                if(y<52&&y>5&&qvlv_quanju<11&&duandian<5&&qulv_jinduan<=4&&dian1<9)
-                {
-                      if(kuan_flag<=21&&zhangai_flag<2&&2*half_zhi[y]>2*half_width_group[y]-5)//宽赛道
-                      {
-                          kuan_flag++;
-                      //pl+=currentzhongjian[y];
-                      }else
-                    if(2*half_width_group[y]-2*half_zhi[y]>8&&kuan_flag>17)//赛道变窄
-                    {
-                      zhangai_flag++;
-                      if(zhangai_flag==6)
-                      lo=(currentzhongjian[y]+currentzhongjian[y+1])/2-(currentzhongjian[55]+currentzhongjian[54])/2;
-                    }
-                    if(zhangai_flag>7&&kuan_flag>17&&2*half_zhi[y]>2*half_width_group[y]-8)//宽赛道
-                    {
-                      youshi_kuan_flag++;
-                    }
-                    if(youshi_kuan_flag>=4)
-                    {
-                      if(lo>2)
-                      {
-                        zhangai_left=1;
-                        zhangai_right=0;
-                      }
-                      else
-                        if(lo<-2)
-                        {
-                          
-                        zhangai_right=1;
-                        zhangai_left=0;
-                        }
-                      youshi_kuan_flag=0;
-                    }
-                  
-                }
+			//****************************************************障碍判定****************************************************************//
+			if(y<52&&y>5&&qvlv_quanju<11&&duandian<5&&qulv_jinduan<=4&&dian1<9)
+			{
+				if(kuan_flag<=21&&zhangai_flag<2&&2*half_zhi[y]>2*half_width_group[y]-5)//宽赛道
+				{
+					kuan_flag++;
+				//pl+=currentzhongjian[y];
+				}
+				else
+				if(2*half_width_group[y]-2*half_zhi[y]>8&&kuan_flag>17)//赛道变窄
+				{
+					zhangai_flag++;
+					if(zhangai_flag==6)
+					lo=(currentzhongjian[y]+currentzhongjian[y+1])/2-(currentzhongjian[55]+currentzhongjian[54])/2;
+				}
+				if(zhangai_flag>7&&kuan_flag>17&&2*half_zhi[y]>2*half_width_group[y]-8)//宽赛道
+				{
+					youshi_kuan_flag++;
+				}
+				if(youshi_kuan_flag>=4)
+				{
+					if(lo>2)
+					{
+					zhangai_left=1;
+					zhangai_right=0;
+					}
+					else
+					if(lo<-2)
+					{
+						
+					zhangai_right=1;
+					zhangai_left=0;
+					}
+					youshi_kuan_flag=0;
+				}
+				
+			}
                   // *******************************************防止扫到跑道外*********************************************//
                   if(y<36&&((abs)(right_heixian[y]-currentzhongjian[y])<1||(abs)(left_heixian[y]-currentzhongjian[y])<1))//防止扫到跑道外面
                 {
