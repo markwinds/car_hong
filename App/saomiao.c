@@ -25,6 +25,7 @@ int half_zhi[60];
 int yy1_pinjun,yy2_pinjun;
 extern char S;
 int kp1;
+int zbt=0;
 
 char jiji=0;
 int yuan_diu=0,jieduan=0,qishihang=0;
@@ -463,6 +464,9 @@ void lkcongzhongjiansaomiao()
       yuan_diu=0;
       jieduan=0;
       qishihang=0;
+      zbt=0;
+      if(shaobudaozuo_flag==0)
+        zbt=20;
 //       for(int i=45;i>0;i--)  
 //      {
 //         
@@ -616,10 +620,10 @@ void pianchachuli()//偏差处理
     {
          jiji++;
           ruyuanhuan_flag++;
-          if(my_piancha<-4)//右边进的圆环
+          if(my_piancha<-4 && zbt)//右边进的圆环
           my_piancha+=50;
           else
-          if(my_piancha>4)//左边进的圆环
+          if(my_piancha>4 && zbt)//左边进的圆环
           my_piancha-=50;
     }
     else
