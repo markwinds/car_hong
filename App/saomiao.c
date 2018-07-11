@@ -1,5 +1,5 @@
-//×÷Õß£º 
-//Ê±¼ä£º
+//ä½œè€…ï¼š 
+//æ—¶é—´ï¼š
 #include "saomiao.h"
 #include "common.h"
 #include "include.h"
@@ -33,12 +33,12 @@ int dierge=0;
 extern char jieduan1_right=0,jieduan2_right=0,jieduan3_right=0,jieduan4_right=0,jieduan3_right_count=0;
 char street_width=0;
 char street_len=0;
-char cur_L_ready_flag=0;         //×óÔ²»·Ô¤ÅĞ¶Ï³õÊ¼Ê¶±ğ±êÖ¾
-char cur_L_ready_delay_flag=0;   //×óÔ²»·Ô¤ÅĞ¶Ï³ÚĞ¸±êÖ¾
-uint16 cur_L_ready_time_flag=0;   //×óÔ²»·Ô¤ÅĞ¶Ï¼ÆÊ±±äÁ¿
-char cur_L_ready_rest_flag=0;    //×óÔ²»·Ô¤ÅĞ¶Ï¸´Î»±äÁ¿
-char cur_R_ready_flag=0;         //ÓÒÔ²»·Ô¤ÅĞ¶Ï³õÊ¼Ê¶±ğ±êÖ¾
-char cur_R_ready_delay_flag=0;   //ÓÒÔ²»·Ô¤ÅĞ¶Ï³ÚĞ¸±êÖ¾
+char cur_L_ready_flag=0;         //å·¦åœ†ç¯é¢„åˆ¤æ–­åˆå§‹è¯†åˆ«æ ‡å¿—
+char cur_L_ready_delay_flag=0;   //å·¦åœ†ç¯é¢„åˆ¤æ–­å¼›æ‡ˆæ ‡å¿—
+uint16 cur_L_ready_time_flag=0;   //å·¦åœ†ç¯é¢„åˆ¤æ–­è®¡æ—¶å˜é‡
+char cur_L_ready_rest_flag=0;    //å·¦åœ†ç¯é¢„åˆ¤æ–­å¤ä½å˜é‡
+char cur_R_ready_flag=0;         //å³åœ†ç¯é¢„åˆ¤æ–­åˆå§‹è¯†åˆ«æ ‡å¿—
+char cur_R_ready_delay_flag=0;   //å³åœ†ç¯é¢„åˆ¤æ–­å¼›æ‡ˆæ ‡å¿—
 
 
 
@@ -51,28 +51,28 @@ uint16 cur_R_nei_time_flag=0;
 uint16 cur_L_diyi_time_flag=0;
 uint16 cur_L_nei_time_flag=0;
 
-uint16 cur_R_ready_time_flag=0;   //ÓÒÔ²»·Ô¤ÅĞ¶Ï¼ÆÊ±±äÁ¿
-char cur_R_ready_rest_flag=0;    //ÓÒÔ²»·Ô¤ÅĞ¶Ï¸´Î»±äÁ¿
+uint16 cur_R_ready_time_flag=0;   //å³åœ†ç¯é¢„åˆ¤æ–­è®¡æ—¶å˜é‡
+char cur_R_ready_rest_flag=0;    //å³åœ†ç¯é¢„åˆ¤æ–­å¤ä½å˜é‡
 
-/*Ô²»·×¼È·Ê¶±ğ*/
-char cur_L_real_flag=0;          //×óÔ²»·×¼È·ÅĞ¶ÏÊ¶±ğ±êÖ¾
-char cur_L_real_delay_flag=0;    //×óÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-char cur_L_real_rest_flag=0;     //×óÔ²»·×¼È·¸´Î»Ê¶±ğ±êÖ¾
-uint16 cur_L_real_time_flag=0;    //×óÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-uint16 cur_L_real_time_flag1=0;   //×óÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾1
+/*åœ†ç¯å‡†ç¡®è¯†åˆ«*/
+char cur_L_real_flag=0;          //å·¦åœ†ç¯å‡†ç¡®åˆ¤æ–­è¯†åˆ«æ ‡å¿—
+char cur_L_real_delay_flag=0;    //å·¦åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+char cur_L_real_rest_flag=0;     //å·¦åœ†ç¯å‡†ç¡®å¤ä½è¯†åˆ«æ ‡å¿—
+uint16 cur_L_real_time_flag=0;    //å·¦åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+uint16 cur_L_real_time_flag1=0;   //å·¦åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—1
 
-char cur_R_real_flag=0;          //ÓÒÔ²»·×¼È·ÅĞ¶ÏÊ¶±ğ±êÖ¾
-char cur_R_real_delay_flag=0;    //ÓÒÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-char cur_R_real_rest_flag=0;     //ÓÒÔ²»·×¼È·¸´Î»Ê¶±ğ±êÖ¾
+char cur_R_real_flag=0;          //å³åœ†ç¯å‡†ç¡®åˆ¤æ–­è¯†åˆ«æ ‡å¿—
+char cur_R_real_delay_flag=0;    //å³åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+char cur_R_real_rest_flag=0;     //å³åœ†ç¯å‡†ç¡®å¤ä½è¯†åˆ«æ ‡å¿—
 
-char cur_R_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
-char cur_L_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
+char cur_R_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
+char cur_L_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
 
 char cur_R_real_CH_flag=0;
 char cur_L_real_CH_flag=0;
 
-uint16 cur_R_real_time_flag=0;    //ÓÒÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-uint16 cur_R_real_time_flag1=0;   //ÓÒÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾1
+uint16 cur_R_real_time_flag=0;    //å³åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+uint16 cur_R_real_time_flag1=0;   //å³åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—1
 
 
 static int half_width_group[60]=
@@ -83,8 +83,8 @@ static int half_width_group[60]=
 28,29,29,30,30,30,31,31,32,33,
 33,33,33,33,34,34,34,35,35,35,
 36,36,36,36,37,37,38,38,38,38      
-};                                                      //È¨Öµ²»Ò»Ñù£¬Ô½Ô¶Ô½Ä£ºı
-int regression(int startline,int endline)   //ÏßĞÔ»Ø¹é·½³Ì¼ÆËãĞ±ÂÊ      
+};                                                      //æƒå€¼ä¸ä¸€æ ·ï¼Œè¶Šè¿œè¶Šæ¨¡ç³Š
+int regression(int startline,int endline)   //çº¿æ€§å›å½’æ–¹ç¨‹è®¡ç®—æ–œç‡      
 {
   if(endline>56)
     endline=56;
@@ -120,7 +120,7 @@ int regression(int startline,int endline)   //ÏßĞÔ»Ø¹é·½³Ì¼ÆËãĞ±ÂÊ
 
 
 int hy;
-void huaxian(int x1,int y1,int x2,int y2)//½«Á½¸öµãÖ®¼äÁ¬³ÉÒ»ÌõÏß¶Î
+void huaxian(int x1,int y1,int x2,int y2)//å°†ä¸¤ä¸ªç‚¹ä¹‹é—´è¿æˆä¸€æ¡çº¿æ®µ
 {
       int i,max,a1,a2;
       a1=x1;
@@ -141,7 +141,7 @@ void huaxian(int x1,int y1,int x2,int y2)//½«Á½¸öµãÖ®¼äÁ¬³ÉÒ»ÌõÏß¶Î
     }
 }
 
-void huaxian2(int xxx1,int yyy1,int xxx2,int yyy2)//Á½µãÖ®¼äµÄÏß¶Î
+void huaxian2(int xxx1,int yyy1,int xxx2,int yyy2)//ä¸¤ç‚¹ä¹‹é—´çš„çº¿æ®µ
 {
       int i2,max2,a12,a22;
       a12=xxx1;
@@ -161,7 +161,7 @@ void huaxian2(int xxx1,int yyy1,int xxx2,int yyy2)//Á½µãÖ®¼äµÄÏß¶Î
     }
 }
 
-void huaxian3(int xxx1,int yyy1,int xxx2,int yyy2)//Á½µãÖ®¼äµÄÏß¶Î
+void huaxian3(int xxx1,int yyy1,int xxx2,int yyy2)//ä¸¤ç‚¹ä¹‹é—´çš„çº¿æ®µ
 {
       int i2,max2,a12,a22;
       a12=xxx1;
@@ -181,23 +181,23 @@ void huaxian3(int xxx1,int yyy1,int xxx2,int yyy2)//Á½µãÖ®¼äµÄÏß¶Î
     }
 }
 
-//*****************************************************¶æ»ú¿ØÖÆº¯Êı**********************************************************//
-int DJ_mid=4220;//dj¡ªmid¶æ»úÖĞÖµ£¬ÂÖ×ÓÃ»ÓĞ°Ú½Å
-void servo()//¶æ»ú¿ØÖÆº¯Êı
+//*****************************************************èˆµæœºæ§åˆ¶å‡½æ•°**********************************************************//
+int DJ_mid=4220;//djâ€”midèˆµæœºä¸­å€¼ï¼Œè½®å­æ²¡æœ‰æ‘†è„š
+void servo()//èˆµæœºæ§åˆ¶å‡½æ•°
 {
-    jiao=(int)(kp1*duojijiaodu/10-kd*(lastpiancha_4-duojijiaodu));//¶æ»úµÄpidËã·¨¹«Ê½£¬Ã»ÓĞĞ¡Êı£¬ËùÒÔkp1ÒªĞ´ÕûÊıÔÙ³ıÒÔ10À´ÊµÏÖĞ¡Êı
-    if(jiao>=1000)  //¶æ»úÏŞ·ù¶È
+    jiao=(int)(kp1*duojijiaodu/10-kd*(lastpiancha_4-duojijiaodu));//èˆµæœºçš„pidç®—æ³•å…¬å¼ï¼Œæ²¡æœ‰å°æ•°ï¼Œæ‰€ä»¥kp1è¦å†™æ•´æ•°å†é™¤ä»¥10æ¥å®ç°å°æ•°
+    if(jiao>=1000)  //èˆµæœºé™å¹…åº¦
     jiao=1000;
     if(jiao<=-1000)
     jiao=-1000;
-    ftm_pwm_duty(FTM0,FTM_CH6,DJ_mid+jiao); //633£¬
+    ftm_pwm_duty(FTM0,FTM_CH6,DJ_mid+jiao); //633ï¼Œ
 } 
-//***************************************************É¨Ãèº¯Êı***************************************************************//
+//***************************************************æ‰«æå‡½æ•°***************************************************************//
 void lkcongzhongjiansaomiao()
 {
   
       int kuan_flag=0,lo=0,s_point=0,S_COUNT=0,fuduandian=0,chushizi_flag=0,qulv_yuanhuan=0;
-      memset(shaobudaozuo_flag,0,sizeof(shaobudaozuo_flag));//ÇåÁãº¯Êı
+      memset(shaobudaozuo_flag,0,sizeof(shaobudaozuo_flag));//æ¸…é›¶å‡½æ•°
       memset(shaobudaoyou_flag,0,sizeof(shaobudaoyou_flag));
       int zhangai_flag=0,qulv_s_y=0,qulv_s_l=0;
       shangshizidiyidian=0;
@@ -213,87 +213,87 @@ void lkcongzhongjiansaomiao()
       currentzhongjian[59]=my_lastzhongjian=currentzhongjian[58];
       else
       currentzhongjian[59]=39;
-      for(y=58;y>=0;y--)//É¨ÃèÍê58£¬Õû¸±Í¼Ïñ´¦ÀíÍê±Ï
+      for(y=58;y>=0;y--)//æ‰«æå®Œ58ï¼Œæ•´å‰¯å›¾åƒå¤„ç†å®Œæ¯•
       {
         
-            for(x=my_lastzhongjian;x<=79;x++)//´ÓÖĞ¼äÏòÓÒÉ¨Ãè
+            for(x=my_lastzhongjian;x<=79;x++)//ä»ä¸­é—´å‘å³æ‰«æ
             {
               if(imgyiwei[y][x]==0)
                 {
                     
                   right_heixian[y]=x;
-                  shaobudaoyou_flag[y]=1;    //ÕâÀïÊÇÓÒ±ß¶ªÏß
+                  shaobudaoyou_flag[y]=1;    //è¿™é‡Œæ˜¯å³è¾¹ä¸¢çº¿
                   break;
                 }
              }
 
                 
-             for(x=my_lastzhongjian;x>=0;x--)//Ïò×óÉ¨Ãè
+             for(x=my_lastzhongjian;x>=0;x--)//å‘å·¦æ‰«æ
              { 
                 if(imgyiwei[y][x]==0)
                 {
-                    left_heixian[y]=x;   //¼ÇÂ¼µÚ¼¸ÁĞÕÒ²»µ½Ïß
-                    shaobudaozuo_flag[y]=1;//È·¶¨Ä³Ò»ĞĞÉ¨²»µ½µÄ±êÖ¾£¬ÓÃ1±íÊ¾²úÉúÉ¨µ½£¬·ñÔò×ó±ß¶ªÏß
+                    left_heixian[y]=x;   //è®°å½•ç¬¬å‡ åˆ—æ‰¾ä¸åˆ°çº¿
+                    shaobudaozuo_flag[y]=1;//ç¡®å®šæŸä¸€è¡Œæ‰«ä¸åˆ°çš„æ ‡å¿—ï¼Œç”¨1è¡¨ç¤ºäº§ç”Ÿæ‰«åˆ°ï¼Œå¦åˆ™å·¦è¾¹ä¸¢çº¿
                     break;
                 }  
               }
-             //±ßÏßÉ¨Íê 
+             //è¾¹çº¿æ‰«å®Œ 
         if(fuduandian==0)
         {
-                if(y>48)//¶ª±ß²¹Ïß£¬¼ÓÕû¸öÈüµÀ²¹Ïß
+                if(y>48)//ä¸¢è¾¹è¡¥çº¿ï¼ŒåŠ æ•´ä¸ªèµ›é“è¡¥çº¿
                 {
-                     if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//É¨²»µ½ÓÒ
+                     if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//æ‰«ä¸åˆ°å³
                         { 
                           right_heixian[y]=left_heixian[y]+2*half_width_group[y];
                         }
-                     else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//É¨²»µ½×ó
+                     else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//æ‰«ä¸åˆ°å·¦
                         {
                           left_heixian[y]=right_heixian[y]-2*half_width_group[y];
                         }
-                    else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//¶¼É¨²»µ½
+                    else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//éƒ½æ‰«ä¸åˆ°
                         {
-                          left_heixian[y]=0;//Èç¹ûÁ½±ß¶¼É¨²»µ½£¬Ö±½Ó´ÓÖĞ¼äÌáÈ¡ÖĞÏß
+                          left_heixian[y]=0;//å¦‚æœä¸¤è¾¹éƒ½æ‰«ä¸åˆ°ï¼Œç›´æ¥ä»ä¸­é—´æå–ä¸­çº¿
                           right_heixian[y]=79;
                         }
                 }
-                else if(y<=48)//¸üÔ¶µÄ²¹Ïß£¬
+                else if(y<=48)//æ›´è¿œçš„è¡¥çº¿ï¼Œ
                 {
-                      if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//É¨²»µ½ÓÒ
+                      if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==1)//æ‰«ä¸åˆ°å³
                         { 
                     
-                          right_heixian[y]=right_heixian[y+1]+(abs)(left_heixian[y]-left_heixian[y+1])-1;//¸ù¾İ×ó±ßÕâÒ»µãÓëÉÏÒ»µã£¬
-                           //£¨y+1£©ÎªÊı×éÖĞÉÏÒ»´ÎµÄx×ø±ê£¬
-                          //left_heixian[y]-left_heixian[y+1]Ëã×ó±ßÆ«ÒÆÁ¿£¬¼õÒ»ÎªºóÆÚ²¹³¥
+                          right_heixian[y]=right_heixian[y+1]+(abs)(left_heixian[y]-left_heixian[y+1])-1;//æ ¹æ®å·¦è¾¹è¿™ä¸€ç‚¹ä¸ä¸Šä¸€ç‚¹ï¼Œ
+                           //ï¼ˆy+1ï¼‰ä¸ºæ•°ç»„ä¸­ä¸Šä¸€æ¬¡çš„xåæ ‡ï¼Œ
+                          //left_heixian[y]-left_heixian[y+1]ç®—å·¦è¾¹åç§»é‡ï¼Œå‡ä¸€ä¸ºåæœŸè¡¥å¿
                         }
-                      else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//É¨²»µ½×ó
+                      else if(shaobudaoyou_flag[y]==1&&shaobudaozuo_flag[y]==0)//æ‰«ä¸åˆ°å·¦
                         {
                       
-                          left_heixian[y]=left_heixian[y+1]-(abs)(right_heixian[y+1]-right_heixian[y])+1;//absÎªÈ¡¾ø¶ÔÖµ
+                          left_heixian[y]=left_heixian[y+1]-(abs)(right_heixian[y+1]-right_heixian[y])+1;//absä¸ºå–ç»å¯¹å€¼
                         }
                         
-                      else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//¶¼É¨²»µ½
+                      else if(shaobudaoyou_flag[y]==0&&shaobudaozuo_flag[y]==0)//éƒ½æ‰«ä¸åˆ°
                         {
                           left_heixian[y]=0;
                           right_heixian[y]=79;
                         }
-                }  //²¹ÏßÍê³É£¬×óÓÒ±ßÏßÄâºÏÍê³É
+                }  //è¡¥çº¿å®Œæˆï¼Œå·¦å³è¾¹çº¿æ‹Ÿåˆå®Œæˆ
                 
-                    //*************************************ÖĞÏß´¦Àí*********************************************************//
+                    //*************************************ä¸­çº¿å¤„ç†*********************************************************//
                   
-                currentzhongjian[y]=(int)((right_heixian[y]+left_heixian[y])/2);  //ÌáÈ¡ÖĞ¼äÏß£¨×ó±ß¼ÓÓÒ±ß±È2£©
+                currentzhongjian[y]=(int)((right_heixian[y]+left_heixian[y])/2);  //æå–ä¸­é—´çº¿ï¼ˆå·¦è¾¹åŠ å³è¾¹æ¯”2ï¼‰
                   
-                half_zhi[y]=(int)((right_heixian[y]-left_heixian[y])/2);  //Ò»°ëÈüµÀÖµ£¨Ã»ÓÃ£¬²»¸Ä£©
+                half_zhi[y]=(int)((right_heixian[y]-left_heixian[y])/2);  //ä¸€åŠèµ›é“å€¼ï¼ˆæ²¡ç”¨ï¼Œä¸æ”¹ï¼‰
                     
-                      //*******************************************************ÖĞÏßÂË²¨·ÀÖ¹ÖĞÏß³öÏÖÃ«´Ì**************************************************/
+                      //*******************************************************ä¸­çº¿æ»¤æ³¢é˜²æ­¢ä¸­çº¿å‡ºç°æ¯›åˆº**************************************************/
                   
                 if(currentzhongjian[y]-currentzhongjian[y+1]>4&&y<42&&B<0)
                 currentzhongjian[y]=currentzhongjian[y+1]+1;
                 if(currentzhongjian[y]-currentzhongjian[y+1]<-4&&y<42&&B>0)
                 currentzhongjian[y]=currentzhongjian[y+1]-1;  
 
-                /*ÒÔÉÏÊÇ¶ÔÕû¸öÈüµÀµÄÖĞÏßÌáÈ¡£¬ÏÂÃæÊÇÆ«²î¶È*/
-                /******************************************************************ÇúÂÊ¼ÆËã**************************************************************/
-                if(y>30)//ÇúÂÊ½ü¶ËÅĞ¶Ï  ÓÃµ½±äÁ¿qulv_jinduan
+                /*ä»¥ä¸Šæ˜¯å¯¹æ•´ä¸ªèµ›é“çš„ä¸­çº¿æå–ï¼Œä¸‹é¢æ˜¯åå·®åº¦*/
+                /******************************************************************æ›²ç‡è®¡ç®—**************************************************************/
+                if(y>30)//æ›²ç‡è¿‘ç«¯åˆ¤æ–­  ç”¨åˆ°å˜é‡qulv_jinduan
                 {
                     if((currentzhongjian[y]-currentzhongjian[y+1])>0)
                   qulv_jinduan_right++;
@@ -303,14 +303,14 @@ void lkcongzhongjiansaomiao()
                 } 
 
 
-                if(y<25&&y>=7)//ÇúÂÊÔ¶¶ËÅĞ¶Ï£¬Ô¶´¦µÄÒ»µã¾Í²»ÒªÁË ÓÃµ½±äÁ¿qulv_yuanduan
+                if(y<25&&y>=7)//æ›²ç‡è¿œç«¯åˆ¤æ–­ï¼Œè¿œå¤„çš„ä¸€ç‚¹å°±ä¸è¦äº† ç”¨åˆ°å˜é‡qulv_yuanduan
                 {
                     if((currentzhongjian[y]-currentzhongjian[y+1])>0)
                   qulv_yuandaun_right++;
                   else if((currentzhongjian[y]-currentzhongjian[y+1])<0)
                   qulv_yuandaun_left++;
                 }
-                if(y<=55&&y>10)//ÇúÂÊÈ«¾ÖÅĞ¶Ï   ÓÃµ½±äÁ¿qulv_quanju×óÓÒ
+                if(y<=55&&y>10)//æ›²ç‡å…¨å±€åˆ¤æ–­   ç”¨åˆ°å˜é‡qulv_quanjuå·¦å³
                 {
                     if((currentzhongjian[y]-currentzhongjian[y+1])>0)
                   qvlv_quanju_right++;
@@ -319,14 +319,14 @@ void lkcongzhongjiansaomiao()
                   qvlv_quanju_left++;
                 }   
 
-                if(currentzhongjian[y]>79) //ÖĞÏßµÄÏŞÖÆ·ù¶È x´ú±íĞĞÊı£¬y´ú±íÁĞÊı
+                if(currentzhongjian[y]>79) //ä¸­çº¿çš„é™åˆ¶å¹…åº¦ xä»£è¡¨è¡Œæ•°ï¼Œyä»£è¡¨åˆ—æ•°
                   currentzhongjian[y]=79;
-                if(currentzhongjian[y]<0)  //ÕâÀïÏŞÖÆÔÚÍ¼Ïñ·¶Î§ÄÚ0-79
+                if(currentzhongjian[y]<0)  //è¿™é‡Œé™åˆ¶åœ¨å›¾åƒèŒƒå›´å†…0-79
                   currentzhongjian[y]=0;
 
-                my_lastzhongjian=currentzhongjian[y];//±£´æÖĞ¼äµã×ø±ê  ÒÑ¾­²úÉúÖĞÏßµãµ±Ç°ĞĞÊı¶ÔÓ¦µÄÁĞÊı
+                my_lastzhongjian=currentzhongjian[y];//ä¿å­˜ä¸­é—´ç‚¹åæ ‡  å·²ç»äº§ç”Ÿä¸­çº¿ç‚¹å½“å‰è¡Œæ•°å¯¹åº”çš„åˆ—æ•°
                 
-                if(0<56)//Ğ¡sÎ»ÖÃÅĞ¶Ï£¬Ğ¡sÍäµÀ×÷Ö±Ïß³å´Ì
+                if(0<56)//å°sä½ç½®åˆ¤æ–­ï¼Œå°så¼¯é“ä½œç›´çº¿å†²åˆº
                 {
                     if((currentzhongjian[y]-currentzhongjian[y+2])>0)
                     qulv_s_y++;
@@ -344,27 +344,27 @@ void lkcongzhongjiansaomiao()
                 if(y<58&&y>=10)
                 S_COUNT+=currentzhongjian[y];
                 
-                // *******************************************Ğ¡S¶ÏµãËÑË÷*********************************************//
-                if(y>8&&(abs)(right_heixian[y]-currentzhongjian[y])<5||(abs)(left_heixian[y]-currentzhongjian[y])<5)//Ğ¡S¶ÏµãÅĞ¶¨
+                // *******************************************å°Sæ–­ç‚¹æœç´¢*********************************************//
+                if(y>8&&(abs)(right_heixian[y]-currentzhongjian[y])<5||(abs)(left_heixian[y]-currentzhongjian[y])<5)//å°Sæ–­ç‚¹åˆ¤å®š
                   s_point=y;//
                 else
                   s_point=0;
 
-                //****************************************************ÕÏ°­ÅĞ¶¨****************************************************************//
+                //****************************************************éšœç¢åˆ¤å®š****************************************************************//
                 if(y<52&&y>5&&qvlv_quanju<11&&duandian<5&&qulv_jinduan<=4&&dian1<9)
                 {
-                      if(kuan_flag<=21&&zhangai_flag<2&&2*half_zhi[y]>2*half_width_group[y]-5)//¿íÈüµÀ
+                      if(kuan_flag<=21&&zhangai_flag<2&&2*half_zhi[y]>2*half_width_group[y]-5)//å®½èµ›é“
                       {
                           kuan_flag++;
                       //pl+=currentzhongjian[y];
                       }else
-                    if(2*half_width_group[y]-2*half_zhi[y]>8&&kuan_flag>17)//ÈüµÀ±äÕ­
+                    if(2*half_width_group[y]-2*half_zhi[y]>8&&kuan_flag>17)//èµ›é“å˜çª„
                     {
                       zhangai_flag++;
                       if(zhangai_flag==6)
                       lo=(currentzhongjian[y]+currentzhongjian[y+1])/2-(currentzhongjian[55]+currentzhongjian[54])/2;
                     }
-                    if(zhangai_flag>7&&kuan_flag>17&&2*half_zhi[y]>2*half_width_group[y]-8)//¿íÈüµÀ
+                    if(zhangai_flag>7&&kuan_flag>17&&2*half_zhi[y]>2*half_width_group[y]-8)//å®½èµ›é“
                     {
                       youshi_kuan_flag++;
                     }
@@ -386,8 +386,8 @@ void lkcongzhongjiansaomiao()
                     }
                   
                 }
-                  // *******************************************·ÀÖ¹É¨µ½ÅÜµÀÍâ*********************************************//
-                  if(y<36&&((abs)(right_heixian[y]-currentzhongjian[y])<1||(abs)(left_heixian[y]-currentzhongjian[y])<1))//·ÀÖ¹É¨µ½ÅÜµÀÍâÃæ
+                  // *******************************************é˜²æ­¢æ‰«åˆ°è·‘é“å¤–*********************************************//
+                  if(y<36&&((abs)(right_heixian[y]-currentzhongjian[y])<1||(abs)(left_heixian[y]-currentzhongjian[y])<1))//é˜²æ­¢æ‰«åˆ°è·‘é“å¤–é¢
                 {
                       duandian=y;
                       fuduandian=y;
@@ -417,34 +417,34 @@ void lkcongzhongjiansaomiao()
                 }
          }
     }
-    /*if(right_heixian[y]-left_heixian[y]<half_width_group[y]&&right_heixian[y+1]-left_heixian[y+1]<half_width_group[y+1])//·ÀÖ¹É¨µ½ÅÜµÀÍâÃæ
+    /*if(right_heixian[y]-left_heixian[y]<half_width_group[y]&&right_heixian[y+1]-left_heixian[y+1]<half_width_group[y+1])//é˜²æ­¢æ‰«åˆ°è·‘é“å¤–é¢
           break;*/
     //}
-    //********************************************************yĞĞ½áÊø±êÖ¾*******************************************************
+    //********************************************************yè¡Œç»“æŸæ ‡å¿—*******************************************************
 
     S_Z=S_COUNT/(48);
 
-    //********************************************************************ÇúÂÊ¼ÆËã*******************************************************************
-      qvlv_quanju=abs(qvlv_quanju_right-qvlv_quanju_left);//ÇúÂÊÈ«¾Ö
-      qulv_jinduan=abs(qulv_jinduan_right-qulv_jinduan_left);//ÇúÂÊ½ü¶Ë
-      qulv_yuandaun=abs(qulv_yuandaun_right-qulv_yuandaun_left);//ÇúÂÊÔ¶¶Ë
+    //********************************************************************æ›²ç‡è®¡ç®—*******************************************************************
+      qvlv_quanju=abs(qvlv_quanju_right-qvlv_quanju_left);//æ›²ç‡å…¨å±€
+      qulv_jinduan=abs(qulv_jinduan_right-qulv_jinduan_left);//æ›²ç‡è¿‘ç«¯
+      qulv_yuandaun=abs(qulv_yuandaun_right-qulv_yuandaun_left);//æ›²ç‡è¿œç«¯
       qvlv_quanju_right=qvlv_quanju_left=qulv_jinduan_right=qulv_jinduan_left=qulv_yuandaun_right=qulv_yuandaun_left=0;
-      //´Ë´¦Èı¸öÇúÂÊÇåÁã£¬µÃµ½ËùÓĞÇúÂÊ
+      //æ­¤å¤„ä¸‰ä¸ªæ›²ç‡æ¸…é›¶ï¼Œå¾—åˆ°æ‰€æœ‰æ›²ç‡
 
-    // *******************************************************Ê®×Ö´¦Àí*********************************************************//
+    // *******************************************************åå­—å¤„ç†*********************************************************//
 
-      if(duandian<16) // *****************************Ê®×Ö
+      if(duandian<16) // *****************************åå­—
       {
           for(int i=58;i>7;i--)
           { 
-            if(i>45&&(shaobudaozuo_flag[i]==1||shaobudaoyou_flag[i]==1))    //45ĞĞ×ó±ßÉ¨buµ½£¬ÓÒ±ßÉ¨²»µ½ÔòÎªÊ®×Ö++
+            if(i>45&&(shaobudaozuo_flag[i]==1||shaobudaoyou_flag[i]==1))    //45è¡Œå·¦è¾¹æ‰«buåˆ°ï¼Œå³è¾¹æ‰«ä¸åˆ°åˆ™ä¸ºåå­—++
             rushizi++;
             if((i>9&&i<=40)&&shaobudaozuo_flag[i]==0&&shaobudaoyou_flag[i]==0)  //
               shizishu++;
             if(i<45&&(shaobudaozuo_flag[i]==1||shaobudaoyou_flag[i]==1)&&shangshizidiyidian==0)
               shangshizidiyidian=i;
           }
-          if(shizishu>2&&rushizi>10)//¸ÕÈëÊ®×Ö
+          if(shizishu>2&&rushizi>10)//åˆšå…¥åå­—
           {
               shizi_flag=1;
               //gpio_set(PTE1,1);
@@ -453,7 +453,7 @@ void lkcongzhongjiansaomiao()
               {      
               if(shaobudaozuo_flag[i]==0&&shaobudaoyou_flag[i]==0)
                 {
-                  shizidiyidian=i;   //¿ªÑ­»·ÕÒÊ®×ÖµÚÒ»µã
+                  shizidiyidian=i;   //å¼€å¾ªç¯æ‰¾åå­—ç¬¬ä¸€ç‚¹
                   break;
                 }     
               }
@@ -490,7 +490,7 @@ void lkcongzhongjiansaomiao()
                 
               //huaxian(yy1,currentzhongjian[yy1],yy2,currentzhongjian[yy2]); 
             }
-         else if(shizishu>4&&rushizi<=10&&shangshizidiyidian>=20)//³öÊ®×Ö
+         else if(shizishu>4&&rushizi<=10&&shangshizidiyidian>=20)//å‡ºåå­—
           {
                chushizi_flag=1;
                // gpio_set(PTE1,1);
@@ -510,13 +510,13 @@ void lkcongzhongjiansaomiao()
 
 
 
-      //********************************************************Ô²»·¼ì²â*******************************************************
-	//-------------------Ô²»·²ÎÊı³õÊ¼»¯----------------------
+      //********************************************************åœ†ç¯æ£€æµ‹*******************************************************
+	//-------------------åœ†ç¯å‚æ•°åˆå§‹åŒ–----------------------
 	yuan_diu=1;
 	jieduan=0;
 	qishihang=0;
-	street_len=0; //ÈüµÀ³¤¶È
-	street_width=0;//Èü¿í
+	street_len=0; //èµ›é“é•¿åº¦
+	street_width=0;//èµ›å®½
 	cur_R_ready_time_flag++;
 	cur_R_real_time_flag++; 
 	cur_L_ready_time_flag++;
@@ -529,7 +529,7 @@ void lkcongzhongjiansaomiao()
 	cur_L_diyi_time_flag++;
 	cur_L_nei_time_flag++;  
 
-	/*É¨ÈüµÀ³¤¶È*/
+	/*æ‰«èµ›é“é•¿åº¦*/
 	for(int i=55;i>0;i--)
 	{
 		if(imgyiwei[i][39]!=0)
@@ -541,7 +541,7 @@ void lkcongzhongjiansaomiao()
 			break;
 		}
 	}
-	for(int i=39;i<79;i++)		//É¨ÈüµÀµÄ¿í¶È
+	for(int i=39;i<79;i++)		//æ‰«èµ›é“çš„å®½åº¦
 	{
 		if(imgyiwei[35][i]==0 || i==78)
 		{
@@ -559,30 +559,30 @@ void lkcongzhongjiansaomiao()
 	}
     
 
-	//---------------------------ÓÒÔ²»·ÅĞ¶Ï----------------------
+	//---------------------------å³åœ†ç¯åˆ¤æ–­----------------------
 	int i=35;
-	if(yuan_diu == 1 && i == 35)    //ÓÒÔ²»·
+	if(yuan_diu == 1 && i == 35)    //å³åœ†ç¯
 	{
-		//ÔÚ35ĞĞ36ĞĞ´¦×ó±ß²»GÏß,ÓÒ±ßGÏß.ÈüµÀ³¤¶È´óÓÚ46.¿í¶È´óÓÚ50.35ĞĞ×ó±ßÈüµÀÔÚ[5,25]·¶Î§ÄÚ.
+		//åœ¨35è¡Œ36è¡Œå¤„å·¦è¾¹ä¸ä¸Ÿçº¿,å³è¾¹ä¸Ÿçº¿.èµ›é“é•¿åº¦å¤§äº46.å®½åº¦å¤§äº50.35è¡Œå·¦è¾¹èµ›é“åœ¨[5,25]èŒƒå›´å†….
 		if(shaobudaozuo_flag[i] ==1 && shaobudaozuo_flag[i+2] ==1 && shaobudaoyou_flag[i]==0 &&shaobudaoyou_flag[i+2]==0
 		&& street_len >46 && street_width>50 && left_heixian[i]>5 && left_heixian[i]<25)
 		{          
 			cur_R_ready_flag = 1;
 		}
 
-		if(cur_R_ready_flag||cur_R_diyi_flag) //½»»»µÚÒ»¶Î±êÖ¾
+		if(cur_R_ready_flag||cur_R_diyi_flag) //äº¤æ¢ç¬¬ä¸€æ®µæ ‡å¿—
 		{
-			cur_R_ready_flag = 0;                //±êÖ¾½»»»£¬Çå¿ÕµÚÒ»¶Î£¬¶àÇå¿ÕÒ»´Î£¬·ÀÖ¹bug
-			cur_R_diyi_flag = 1;                 //µÚÒ»¶Î±êÖ¾   
+			cur_R_ready_flag = 0;                //æ ‡å¿—äº¤æ¢ï¼Œæ¸…ç©ºç¬¬ä¸€æ®µï¼Œå¤šæ¸…ç©ºä¸€æ¬¡ï¼Œé˜²æ­¢bug
+			cur_R_diyi_flag = 1;                 //ç¬¬ä¸€æ®µæ ‡å¿—   
 		
-			//ÔÚ0.4ÃëÄÚ,ÔÚ35ĞĞ36ĞĞ´¦ÓÒ±ß×ó±ß¶¼²»GÏß,×ó±ßÈüµÀÔÚ[5,25]·¶Î§ÄÚ,ÈüµÀ³¤¶È´óÓÚ43.
+			//åœ¨0.4ç§’å†…,åœ¨35è¡Œ36è¡Œå¤„å³è¾¹å·¦è¾¹éƒ½ä¸ä¸Ÿçº¿,å·¦è¾¹èµ›é“åœ¨[5,25]èŒƒå›´å†…,èµ›é“é•¿åº¦å¤§äº43.
 			if(cur_R_diyi_flag && shaobudaoyou_flag[i]==1 && shaobudaoyou_flag[i+2] && shaobudaozuo_flag[i]==1
 			&&shaobudaozuo_flag[i+2]==1 && street_len>43 &&left_heixian[i]>5 && left_heixian[i]<25)
 			{
-				cur_R_ready_rest_flag = 1;            //ÄÚÔ²±êÖ¾
+				cur_R_ready_rest_flag = 1;            //å†…åœ†æ ‡å¿—
 			}
 			if(cur_R_diyi_time_flag > 60) 
-			{     //µÚÒ»¶ÎÕÒµ½ºó0.4sºó×Ô¶¯Çå¿Õ  ·ÀÖ¹µÚÒ»¶ÎÎóÅĞÇÒÃ»ÓĞÕÒµ½ÄÚÔ² Ò»Ö±±£ÁôµÚÒ»¶Î±êÖ¾
+			{     //ç¬¬ä¸€æ®µæ‰¾åˆ°å0.4såè‡ªåŠ¨æ¸…ç©º  é˜²æ­¢ç¬¬ä¸€æ®µè¯¯åˆ¤ä¸”æ²¡æœ‰æ‰¾åˆ°å†…åœ† ä¸€ç›´ä¿ç•™ç¬¬ä¸€æ®µæ ‡å¿—
 				cur_R_diyi_flag = 0;
 			}
 		}
@@ -591,20 +591,20 @@ void lkcongzhongjiansaomiao()
 			cur_R_diyi_flag = 0;
 			cur_R_diyi_time_flag = 0;
 		}
-		if(cur_R_ready_rest_flag||cur_R_nei_flag) //½»»»ÄÚÔ²±êÖ¾ µÚÒ»¶ÎºÍÄÚÔ²×¼±¸±êÖ¾È«Çå¿Õ
+		if(cur_R_ready_rest_flag||cur_R_nei_flag) //äº¤æ¢å†…åœ†æ ‡å¿— ç¬¬ä¸€æ®µå’Œå†…åœ†å‡†å¤‡æ ‡å¿—å…¨æ¸…ç©º
 		{
 			
 			cur_R_diyi_flag = 0;
 			cur_R_ready_rest_flag = 0;
 			cur_R_nei_flag = 1;         
-			//ÔÚµÄ¶ş¶Îºó0.4ÃëÄÚ:ÔÚ35ĞĞ36ĞĞ´¦×ó±ß²»GÏß,ÓÒ±ßGÏß.ÈüµÀ³¤¶È´óÓÚ40.¿í¶È´óÓÚ50.35ĞĞ×ó±ßÈüµÀÔÚ[10,30]·¶Î§ÄÚ.
+			//åœ¨çš„äºŒæ®µå0.4ç§’å†…:åœ¨35è¡Œ36è¡Œå¤„å·¦è¾¹ä¸ä¸Ÿçº¿,å³è¾¹ä¸Ÿçº¿.èµ›é“é•¿åº¦å¤§äº40.å®½åº¦å¤§äº50.35è¡Œå·¦è¾¹èµ›é“åœ¨[10,30]èŒƒå›´å†….
 			if(1)//(cur_R_nei_flag && shaobudaozuo_flag[i]==1 && shaobudaozuo_flag[i+2]==1 && shaobudaoyou_flag[i]==0
 			//&&shaobudaozuo_flag[i+2]==0 && street_len>40 && street_width>50 && left_heixian[i]>10 && left_heixian[i]<30)//
 			{                             
 			cur_R_real_flag = 1;  
 			//jiji++;
-			}            //µÚ¶ş¶Î¶ªÏß±êÖ¾            
-			if(cur_R_nei_time_flag > 60) {     //µÚÄÚÔ²ÕÒµ½ºó0.4sºó×Ô¶¯Çå¿Õ  ·ÀÖ¹ÄÚÔ²ÎóÅĞÇÒÃ»ÓĞÕÒµ½µÚ¶ş¶Î Ò»Ö±±£ÁôÄÚÔ²±êÖ¾
+			}            //ç¬¬äºŒæ®µä¸¢çº¿æ ‡å¿—            
+			if(cur_R_nei_time_flag > 60) {     //ç¬¬å†…åœ†æ‰¾åˆ°å0.4såè‡ªåŠ¨æ¸…ç©º  é˜²æ­¢å†…åœ†è¯¯åˆ¤ä¸”æ²¡æœ‰æ‰¾åˆ°ç¬¬äºŒæ®µ ä¸€ç›´ä¿ç•™å†…åœ†æ ‡å¿—
 				cur_R_nei_flag = 0;}          
 		}
 		else 
@@ -613,15 +613,15 @@ void lkcongzhongjiansaomiao()
 			cur_R_nei_time_flag = 0;
 		}
 	}
-	/*ÓÒ×¼È·Ê¶±ğ*/
-	if(cur_R_real_flag||cur_R_real_delay_flag)   //½»»»µÚ¶ş¶Î±êÖ¾£¬¼´Ô²»·×Ü±êÖ¾
+	/*å³å‡†ç¡®è¯†åˆ«*/
+	if(cur_R_real_flag||cur_R_real_delay_flag)   //äº¤æ¢ç¬¬äºŒæ®µæ ‡å¿—ï¼Œå³åœ†ç¯æ€»æ ‡å¿—
 	{ 
 		cur_R_nei_flag = 0;
 		cur_R_real_flag = 0;
 		cur_R_real_CH_flag=0;        
-		cur_R_real_delay_flag = 1;                 //Ô²»·×Ü±êÖ¾  
+		cur_R_real_delay_flag = 1;                 //åœ†ç¯æ€»æ ‡å¿—  
 		guai_flag=1;
-        //33ĞĞ´ó¸Å0.4Ãë×óÓÒÑÓÊ±ºó,Èç¹ûÈ«ÊÇ¿Õ,ÅĞ¶Ï³ö»·¡£
+        //33è¡Œå¤§æ¦‚0.4ç§’å·¦å³å»¶æ—¶å,å¦‚æœå…¨æ˜¯ç©º,åˆ¤æ–­å‡ºç¯ã€‚
 
         i=33;
 		//       if(imgyiwei[50][0]!=0 && imgyiwei[45][0]!=0 && imgyiwei[40][0]!=0 && imgyiwei[34][0]!=0 &&
@@ -630,7 +630,7 @@ void lkcongzhongjiansaomiao()
 		//          imgyiwei[20][79]!=0 && imgyiwei[25][79]!=0 && imgyiwei[30][79]!=0 
 		//          )
 		//       {
-		//           cur_R_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+		//           cur_R_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
 		//           jiji++;
 		//        
 		//        }
@@ -643,34 +643,34 @@ void lkcongzhongjiansaomiao()
 			shaobudaozuo_flag[24]==0
 			)
 		{
-				cur_R_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+				cur_R_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
 				chuhuan_you=1;
 		}
 		//          for(int j = 0; j <= 79; j++){
 		//            if(imgyiwei[i][j]){
 		//              cur_R_real_CH_flag++;
 		//              if(cur_R_real_CH_flag>55){
-		//                cur_R_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+		//                cur_R_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
 		//               
 		//                  jiji++;
 		//                break;}}}}
         
 
-        if(cur_R_real_rest_flag) cur_R_real_time_flag1++;  //ÕÒµ½³öÔ²»·±êÖ¾£¬¿ªÊ¼¼ÆÊı
+        if(cur_R_real_rest_flag) cur_R_real_time_flag1++;  //æ‰¾åˆ°å‡ºåœ†ç¯æ ‡å¿—ï¼Œå¼€å§‹è®¡æ•°
         
         i=21;
         if(cur_R_real_time_flag1>40&&shaobudaozuo_flag[i]==1 && shaobudaoyou_flag[i]==1)
 		//      if(i==21&&cur_R_real_rest_flag&&cur_R_real_time_flag1>40&&!Left_Add_Flag[i]&&!Left_Add_Flag[i+2]&&Left_Add_Line[i]>50&&Left_Add_Line[i+2]<60)
         {       
           cur_R_real_delay_flag = 0;
-        }         //Ô²»·½áÊø£¬×Ü±êÖ¾Çå¿Õ      
+        }         //åœ†ç¯ç»“æŸï¼Œæ€»æ ‡å¿—æ¸…ç©º      
     }
 	else
 	{
-		cur_R_real_delay_flag = 0;            //Ô²»·×Ü±êÖ¾Çå¿Õ
-		cur_R_real_time_flag = 0;             //Ô²»·×Ü±êÖ¾ÕÒµ½ºó£¬¿ªÊ¼¼ÆÊı£¬×÷ÎªÈë»·µÄÑÓÊ±
+		cur_R_real_delay_flag = 0;            //åœ†ç¯æ€»æ ‡å¿—æ¸…ç©º
+		cur_R_real_time_flag = 0;             //åœ†ç¯æ€»æ ‡å¿—æ‰¾åˆ°åï¼Œå¼€å§‹è®¡æ•°ï¼Œä½œä¸ºå…¥ç¯çš„å»¶æ—¶
 		cur_R_real_time_flag1 = 0;
-		cur_R_real_rest_flag = 0;             //³öÔ²»·±êÖ¾Çå¿Õ
+		cur_R_real_rest_flag = 0;             //å‡ºåœ†ç¯æ ‡å¿—æ¸…ç©º
     }
       
 
@@ -685,12 +685,12 @@ void lkcongzhongjiansaomiao()
 
 
 
-      /***********************************************************************************/ //×óÔ²»·
+      /***********************************************************************************/ //å·¦åœ†ç¯
       i=35;
           if(yuan_diu == 1 && i == 35)
       {
         //jiji++;
-        //ÔÚ35ĞĞ36ĞĞ´¦×ó±ß²»GÏß,ÓÒ±ßGÏß.ÈüµÀ³¤¶È´óÓÚ46.¿í¶È´óÓÚ50.35ĞĞ×ó±ßÈüµÀÔÚ[5,25]·¶Î§ÄÚ.
+        //åœ¨35è¡Œ36è¡Œå¤„å·¦è¾¹ä¸ä¸Ÿçº¿,å³è¾¹ä¸Ÿçº¿.èµ›é“é•¿åº¦å¤§äº46.å®½åº¦å¤§äº50.35è¡Œå·¦è¾¹èµ›é“åœ¨[5,25]èŒƒå›´å†….
         if(shaobudaoyou_flag[i] ==1 && shaobudaoyou_flag[i+2] ==1 && shaobudaozuo_flag[i]==0 &&shaobudaozuo_flag[i+2]==0
         && street_len >46 && street_width>50 )
         {          
@@ -702,21 +702,21 @@ void lkcongzhongjiansaomiao()
         else
           ;
         
-        if(cur_L_ready_flag||cur_L_diyi_flag) //½»»»µÚÒ»¶Î±êÖ¾
+        if(cur_L_ready_flag||cur_L_diyi_flag) //äº¤æ¢ç¬¬ä¸€æ®µæ ‡å¿—
         {
-          cur_L_ready_flag = 0;                //±êÖ¾½»»»£¬Çå¿ÕµÚÒ»¶Î£¬¶àÇå¿ÕÒ»´Î£¬·ÀÖ¹bug
-          cur_L_diyi_flag = 1;                 //µÚÒ»¶Î±êÖ¾   
+          cur_L_ready_flag = 0;                //æ ‡å¿—äº¤æ¢ï¼Œæ¸…ç©ºç¬¬ä¸€æ®µï¼Œå¤šæ¸…ç©ºä¸€æ¬¡ï¼Œé˜²æ­¢bug
+          cur_L_diyi_flag = 1;                 //ç¬¬ä¸€æ®µæ ‡å¿—   
           
-          //ÔÚ0.4ÃëÄÚ,ÔÚ35ĞĞ36ĞĞ´¦ÓÒ±ß×ó±ß¶¼²»GÏß,×ó±ßÈüµÀÔÚ[5,25]·¶Î§ÄÚ,ÈüµÀ³¤¶È´óÓÚ43.
+          //åœ¨0.4ç§’å†…,åœ¨35è¡Œ36è¡Œå¤„å³è¾¹å·¦è¾¹éƒ½ä¸ä¸Ÿçº¿,å·¦è¾¹èµ›é“åœ¨[5,25]èŒƒå›´å†…,èµ›é“é•¿åº¦å¤§äº43.
           if(cur_L_diyi_flag && shaobudaozuo_flag[i]==1 && shaobudaozuo_flag[i+2] && shaobudaoyou_flag[i]==1
           &&shaobudaoyou_flag[i+2]==1 && street_len>43)
           {
-            cur_L_ready_rest_flag = 1;            //ÄÚÔ²±êÖ¾
+            cur_L_ready_rest_flag = 1;            //å†…åœ†æ ‡å¿—
            // papa++;
             //jiji++;
             }
           else ;
-          if(cur_L_diyi_time_flag > 60) {     //µÚÒ»¶ÎÕÒµ½ºó0.4sºó×Ô¶¯Çå¿Õ  ·ÀÖ¹µÚÒ»¶ÎÎóÅĞÇÒÃ»ÓĞÕÒµ½ÄÚÔ² Ò»Ö±±£ÁôµÚÒ»¶Î±êÖ¾
+          if(cur_L_diyi_time_flag > 60) {     //ç¬¬ä¸€æ®µæ‰¾åˆ°å0.4såè‡ªåŠ¨æ¸…ç©º  é˜²æ­¢ç¬¬ä¸€æ®µè¯¯åˆ¤ä¸”æ²¡æœ‰æ‰¾åˆ°å†…åœ† ä¸€ç›´ä¿ç•™ç¬¬ä¸€æ®µæ ‡å¿—
               cur_L_diyi_flag = 0;}
         }
         else
@@ -725,20 +725,20 @@ void lkcongzhongjiansaomiao()
           cur_L_diyi_time_flag = 0;
         }
        //?
-        if(cur_L_ready_rest_flag||cur_L_nei_flag) //½»»»ÄÚÔ²±êÖ¾ µÚÒ»¶ÎºÍÄÚÔ²×¼±¸±êÖ¾È«Çå¿Õ
+        if(cur_L_ready_rest_flag||cur_L_nei_flag) //äº¤æ¢å†…åœ†æ ‡å¿— ç¬¬ä¸€æ®µå’Œå†…åœ†å‡†å¤‡æ ‡å¿—å…¨æ¸…ç©º
         {
           
           cur_L_diyi_flag = 0;
           cur_L_ready_rest_flag = 0;
           cur_L_nei_flag = 1;         
-          //ÔÚµÄ¶ş¶Îºó0.4ÃëÄÚ:ÔÚ35ĞĞ36ĞĞ´¦×ó±ß²»GÏß,ÓÒ±ßGÏß.ÈüµÀ³¤¶È´óÓÚ40.¿í¶È´óÓÚ50.35ĞĞ×ó±ßÈüµÀÔÚ[10,30]·¶Î§ÄÚ.
+          //åœ¨çš„äºŒæ®µå0.4ç§’å†…:åœ¨35è¡Œ36è¡Œå¤„å·¦è¾¹ä¸ä¸Ÿçº¿,å³è¾¹ä¸Ÿçº¿.èµ›é“é•¿åº¦å¤§äº40.å®½åº¦å¤§äº50.35è¡Œå·¦è¾¹èµ›é“åœ¨[10,30]èŒƒå›´å†….
           if(1)//(cur_L_nei_flag && shaobudaozuo_flag[i]==1 && shaobudaozuo_flag[i+2]==1 && shaobudaoyou_flag[i]==0
           //&&shaobudaozuo_flag[i+2]==0 && street_len>40 && street_width>50 && left_heixian[i]>10 && left_heixian[i]<30)//
           {                             
             cur_L_real_flag = 1;  
             //jiji++;
-            }            //µÚ¶ş¶Î¶ªÏß±êÖ¾            
-          if(cur_L_nei_time_flag > 60) {     //µÚÄÚÔ²ÕÒµ½ºó0.4sºó×Ô¶¯Çå¿Õ  ·ÀÖ¹ÄÚÔ²ÎóÅĞÇÒÃ»ÓĞÕÒµ½µÚ¶ş¶Î Ò»Ö±±£ÁôÄÚÔ²±êÖ¾
+            }            //ç¬¬äºŒæ®µä¸¢çº¿æ ‡å¿—            
+          if(cur_L_nei_time_flag > 60) {     //ç¬¬å†…åœ†æ‰¾åˆ°å0.4såè‡ªåŠ¨æ¸…ç©º  é˜²æ­¢å†…åœ†è¯¯åˆ¤ä¸”æ²¡æœ‰æ‰¾åˆ°ç¬¬äºŒæ®µ ä¸€ç›´ä¿ç•™å†…åœ†æ ‡å¿—
               cur_L_nei_flag = 0;}          
         }
         else 
@@ -747,18 +747,18 @@ void lkcongzhongjiansaomiao()
           cur_L_nei_time_flag = 0;
         }
       }
-      /*×ó×¼È·Ê¶±ğ*/
-      if(cur_L_real_flag||cur_L_real_delay_flag)   //½»»»µÚ¶ş¶Î±êÖ¾£¬¼´Ô²»·×Ü±êÖ¾
+      /*å·¦å‡†ç¡®è¯†åˆ«*/
+      if(cur_L_real_flag||cur_L_real_delay_flag)   //äº¤æ¢ç¬¬äºŒæ®µæ ‡å¿—ï¼Œå³åœ†ç¯æ€»æ ‡å¿—
       { 
         //led(LED1, LED_ON);
         cur_L_nei_flag = 0;
         cur_L_real_flag = 0;
         cur_L_real_CH_flag=0;        
-        cur_L_real_delay_flag = 1;                 //Ô²»·×Ü±êÖ¾  
+        cur_L_real_delay_flag = 1;                 //åœ†ç¯æ€»æ ‡å¿—  
         guai_flag=1;
         //papa++;
         
-        //33ĞĞ´ó¸Å0.4Ãë×óÓÒÑÓÊ±ºó,Èç¹ûÈ«ÊÇ¿Õ,ÅĞ¶Ï³ö»·¡£
+        //33è¡Œå¤§æ¦‚0.4ç§’å·¦å³å»¶æ—¶å,å¦‚æœå…¨æ˜¯ç©º,åˆ¤æ–­å‡ºç¯ã€‚
         /****************************************/ 
         i=33;
 //       if(imgyiwei[50][0]!=0 && imgyiwei[45][0]!=0 && imgyiwei[40][0]!=0 && imgyiwei[34][0]!=0 &&
@@ -767,7 +767,7 @@ void lkcongzhongjiansaomiao()
 //          imgyiwei[20][79]!=0 && imgyiwei[25][79]!=0 && imgyiwei[30][79]!=0 
 //          )
 //       {
-//           cur_L_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+//           cur_L_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
 //           jiji++;
 //        
 //        }
@@ -780,7 +780,7 @@ void lkcongzhongjiansaomiao()
              shaobudaoyou_flag[24]==0
                )
         {
-                  cur_L_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+                  cur_L_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
                   chuhuan_zuo=1;
                   //jiji++;
           }
@@ -788,28 +788,28 @@ void lkcongzhongjiansaomiao()
 //            if(imgyiwei[i][j]){
 //              cur_L_real_CH_flag++;
 //              if(cur_L_real_CH_flag>55){
-//                cur_L_real_rest_flag = 1;        //³öÔ²»·±êÖ¾
+//                cur_L_real_rest_flag = 1;        //å‡ºåœ†ç¯æ ‡å¿—
 //               
 //                  jiji++;
 //                break;}}}}
         
 
-        if(cur_L_real_rest_flag) cur_L_real_time_flag1++;  //ÕÒµ½³öÔ²»·±êÖ¾£¬¿ªÊ¼¼ÆÊı
+        if(cur_L_real_rest_flag) cur_L_real_time_flag1++;  //æ‰¾åˆ°å‡ºåœ†ç¯æ ‡å¿—ï¼Œå¼€å§‹è®¡æ•°
         
         i=21;
         if(i==21&&cur_L_real_time_flag1>40&&shaobudaoyou_flag[i]==1 && shaobudaozuo_flag[i]==1)
 //      if(i==21&&cur_L_real_rest_flag&&cur_L_real_time_flag1>40&&!Left_Add_Flag[i]&&!Left_Add_Flag[i+2]&&Left_Add_Line[i]>50&&Left_Add_Line[i+2]<60)
         {       
           cur_L_real_delay_flag = 0;
-        }         //Ô²»·½áÊø£¬×Ü±êÖ¾Çå¿Õ      
+        }         //åœ†ç¯ç»“æŸï¼Œæ€»æ ‡å¿—æ¸…ç©º      
       }
       else
       {
         //led(LED1, LED_OFF);
-        cur_L_real_delay_flag = 0;            //Ô²»·×Ü±êÖ¾Çå¿Õ
-        cur_L_real_time_flag = 0;             //Ô²»·×Ü±êÖ¾ÕÒµ½ºó£¬¿ªÊ¼¼ÆÊı£¬×÷ÎªÈë»·µÄÑÓÊ±
+        cur_L_real_delay_flag = 0;            //åœ†ç¯æ€»æ ‡å¿—æ¸…ç©º
+        cur_L_real_time_flag = 0;             //åœ†ç¯æ€»æ ‡å¿—æ‰¾åˆ°åï¼Œå¼€å§‹è®¡æ•°ï¼Œä½œä¸ºå…¥ç¯çš„å»¶æ—¶
         cur_L_real_time_flag1 = 0;
-        cur_L_real_rest_flag = 0;             //³öÔ²»·±êÖ¾Çå¿Õ
+        cur_L_real_rest_flag = 0;             //å‡ºåœ†ç¯æ ‡å¿—æ¸…ç©º
       }
   
 
@@ -821,16 +821,16 @@ void lkcongzhongjiansaomiao()
 
 
   
-/****************************Ô²»·¼õËÙ****************************/
+/****************************åœ†ç¯å‡é€Ÿ****************************/
 
-     /***********ÉÏÃæÊÇ¼ì²âÔ²»·£¬ÏÂÃæ¿ªÊ¼²Ù×÷Ô²»·************************/
+     /***********ä¸Šé¢æ˜¯æ£€æµ‹åœ†ç¯ï¼Œä¸‹é¢å¼€å§‹æ“ä½œåœ†ç¯************************/
   
     
-    if(guai_flag && guai_flag<=15)//µç»ú¼õËÙ·´×ªµÄÊ±¼ä 5ms*30=150ms
+    if(guai_flag && guai_flag<=15)//ç”µæœºå‡é€Ÿåè½¬çš„æ—¶é—´ 5ms*30=150ms
     {
         guai_flag++;
 
-        if(guai_flag&&guai_flag<=15)//ÂÖ×Ó¹ÕÍä±£³ÖµÄÊ±¼ä
+        if(guai_flag&&guai_flag<=15)//è½®å­æ‹å¼¯ä¿æŒçš„æ—¶é—´
         {
            //huaxian3(9,75,shizidiyidian,currentzhongjian[shizidiyidian+4]);
            ruyuanhuan_flag=1;
@@ -841,7 +841,7 @@ void lkcongzhongjiansaomiao()
          guai_flag=0;  
          
     }  
-    //³ö»·ÓÒ
+    //å‡ºç¯å³
     if(chuhuan_you &&chuhuan_you<=10)
     {
        chuhuan_you++;
@@ -854,7 +854,7 @@ void lkcongzhongjiansaomiao()
     {
        chuhuan_you=0;
     }
-    //³ö»·×ó    
+    //å‡ºç¯å·¦    
     if(chuhuan_zuo &&chuhuan_zuo<=20)
     {
        chuhuan_zuo++;
@@ -867,9 +867,9 @@ void lkcongzhongjiansaomiao()
     {
        chuhuan_zuo=0;
     }
-  /*****************************²Ù×÷Ô²»·½áÊø************/
+  /*****************************æ“ä½œåœ†ç¯ç»“æŸ************/
 
-    // ***********************************************************Ğ¡SÍäÅĞ¶¨*Ğ¡SÍäÅĞ¶¨*****************************************************//
+    // ***********************************************************å°Så¼¯åˆ¤å®š*å°Så¼¯åˆ¤å®š*****************************************************//
         if(s_point==0&&qulv_s_y>6&&qulv_s_l>6&&zhidao_flag<20&&!shizi_flag)
         {
           s_wan_flag=1;
@@ -884,20 +884,20 @@ void lkcongzhongjiansaomiao()
         
         
 }
-    //************************************************Í¼Ïñ´¦Àí½áÊø,ÏÂÃæÊÇÆ«²î´¦Àí************************************************/
+    //************************************************å›¾åƒå¤„ç†ç»“æŸ,ä¸‹é¢æ˜¯åå·®å¤„ç†************************************************/
 
 
 
-void pianchachuli()//Æ«²î´¦Àí
+void pianchachuli()//åå·®å¤„ç†
 {
         if(xielv_flag==0)
-        regression(15+duandianshu,43+duandianshu);///Ğ±ÂÊ¼ÆËã
+        regression(15+duandianshu,43+duandianshu);///æ–œç‡è®¡ç®—
         
         dian1=abs((currentzhongjian[52]+currentzhongjian[53]+currentzhongjian[54])/3-39);
         //lins=currentzhongjian[30];
-        currentzhongjian_lk=(currentzhongjian[qianzhan+duandianshu1]-39);//µã
+        currentzhongjian_lk=(currentzhongjian[qianzhan+duandianshu1]-39);//ç‚¹
 
-    if(zhangaijishiright_flag)//ÕÏ°­µÄÆ«²î´¦Àí
+    if(zhangaijishiright_flag)//éšœç¢çš„åå·®å¤„ç†
     {
       currentzhongjian_lk-=5;
       B=0;
@@ -907,76 +907,76 @@ void pianchachuli()//Æ«²î´¦Àí
       currentzhongjian_lk+=5;
       B=0;
     }
-    if(B>19)     //Ğ±ÂÊÏŞ·ù
+    if(B>19)     //æ–œç‡é™å¹…
     B=19;
     if(B<-19)
     B=-19;
 
-    my_piancha=(int)(1.1*currentzhongjian_lk-0.9*B);//0.95,0.32//Æ«²îºÏ³É£¬¿ØÖÆ×ªÍä£¬1.1±¶µÄµã+0,9±¶µÄĞ±ÂÊ¹¹³É×ÜµÄÆ«²î
-   /**********************************Ô²»·Æ«²î´¦Àí**************/ 
-    if(ruyuanhuan_flag>0 && ruyuanhuan_flag<10)//¹Õ50ms
+    my_piancha=(int)(1.1*currentzhongjian_lk-0.9*B);//0.95,0.32//åå·®åˆæˆï¼Œæ§åˆ¶è½¬å¼¯ï¼Œ1.1å€çš„ç‚¹+0,9å€çš„æ–œç‡æ„æˆæ€»çš„åå·®
+   /**********************************åœ†ç¯åå·®å¤„ç†**************/ 
+    if(ruyuanhuan_flag>0 && ruyuanhuan_flag<10)//æ‹50ms
     {
           //jiji++;
           ruyuanhuan_flag++;
-          if(my_piancha<-4)//ÓÒ±ß½øµÄÔ²»·
+          if(my_piancha<-4)//å³è¾¹è¿›çš„åœ†ç¯
           my_piancha-=60;
           else
-          if(my_piancha>4)//×ó±ß½øµÄÔ²»·
+          if(my_piancha>4)//å·¦è¾¹è¿›çš„åœ†ç¯
           my_piancha+=60;
     }
     else
     {
        ruyuanhuan_flag=0;
     }
-    //³ö»·ÓÒ
-        if(chuhuanyou_flag>0 && chuhuanyou_flag<5)//¹Õ50ms
+    //å‡ºç¯å³
+        if(chuhuanyou_flag>0 && chuhuanyou_flag<5)//æ‹50ms
     {
           //jiji++;
           chuhuanyou_flag++;
           my_piancha+=60;
-          cur_R_real_flag=0;          //ÓÒÔ²»·×¼È·ÅĞ¶ÏÊ¶±ğ±êÖ¾
-          cur_R_real_delay_flag=0;    //ÓÒÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-          cur_R_real_rest_flag=0;     //ÓÒÔ²»·×¼È·¸´Î»Ê¶±ğ±êÖ¾
+          cur_R_real_flag=0;          //å³åœ†ç¯å‡†ç¡®åˆ¤æ–­è¯†åˆ«æ ‡å¿—
+          cur_R_real_delay_flag=0;    //å³åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+          cur_R_real_rest_flag=0;     //å³åœ†ç¯å‡†ç¡®å¤ä½è¯†åˆ«æ ‡å¿—
 
-          cur_R_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
-          cur_L_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
+          cur_R_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
+          cur_L_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
     }
     else
     {
        chuhuanyou_flag=0;
     }
-//   //³ö»·×ó
-    if(chuhuanzuo_flag>0 && chuhuanzuo_flag<5)//¹Õ50ms
+//   //å‡ºç¯å·¦
+    if(chuhuanzuo_flag>0 && chuhuanzuo_flag<5)//æ‹50ms
     {
           //jiji++;
           chuhuanzuo_flag++;
           my_piancha-=40;
-          cur_R_real_flag=0;          //ÓÒÔ²»·×¼È·ÅĞ¶ÏÊ¶±ğ±êÖ¾
-          cur_R_real_delay_flag=0;    //ÓÒÔ²»·×¼È·³ÚĞ¸Ê¶±ğ±êÖ¾
-          cur_R_real_rest_flag=0;     //ÓÒÔ²»·×¼È·¸´Î»Ê¶±ğ±êÖ¾
+          cur_R_real_flag=0;          //å³åœ†ç¯å‡†ç¡®åˆ¤æ–­è¯†åˆ«æ ‡å¿—
+          cur_R_real_delay_flag=0;    //å³åœ†ç¯å‡†ç¡®å¼›æ‡ˆè¯†åˆ«æ ‡å¿—
+          cur_R_real_rest_flag=0;     //å³åœ†ç¯å‡†ç¡®å¤ä½è¯†åˆ«æ ‡å¿—
 
-          cur_R_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
-          cur_L_real_into_flag=0;     //ÓÒÔ²»·×¼È·Èë»·Ê¶±ğ±êÖ¾
+          cur_R_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
+          cur_L_real_into_flag=0;     //å³åœ†ç¯å‡†ç¡®å…¥ç¯è¯†åˆ«æ ‡å¿—
     }
     else
     {
        chuhuanzuo_flag=0;
     }
       
-    /*******************Ô²»·Æ«²î½áÊø***************************/
-    if(S>30)//SÍä
+    /*******************åœ†ç¯åå·®ç»“æŸ***************************/
+    if(S>30)//Så¼¯
     {
         kp1=400;
         //B=0;
         my_piancha=currentzhongjian[16]-39;
     }
     else
-    if(abs(my_piancha)<5)//Ö±µÀÉÏ£¬Æ«²î¾ø¶ÔÖµĞ¡ÓÚ5
+    if(abs(my_piancha)<5)//ç›´é“ä¸Šï¼Œåå·®ç»å¯¹å€¼å°äº5
     {
-      kp1=kp-20;//Ö±µÀÉÏµÄP£¬Ğ¡Ò»µã£¬·ÀÖ¹Ö±µÀ¶¶¶¯
+      kp1=kp-20;//ç›´é“ä¸Šçš„Pï¼Œå°ä¸€ç‚¹ï¼Œé˜²æ­¢ç›´é“æŠ–åŠ¨
     }
     else
-      kp1=kp;//²»ÊÇÖ±µÀP¾ÍÒª´óÒ»µã¡£ÒÔÔö´ó¹ÕÍäÁ¦¶È£¬ÇĞÈüµÀÄÚ²à¡£ 
+      kp1=kp;//ä¸æ˜¯ç›´é“På°±è¦å¤§ä¸€ç‚¹ã€‚ä»¥å¢å¤§æ‹å¼¯åŠ›åº¦ï¼Œåˆ‡èµ›é“å†…ä¾§ã€‚ 
 
 //    if(ruyuanhuan_flag!=0)
 //    {
@@ -984,12 +984,12 @@ void pianchachuli()//Æ«²î´¦Àí
 //    }
 
     B=0;
-    if(star_lineflag)//¼ì²âµ½ÆğÅÜÏß
+    if(star_lineflag)//æ£€æµ‹åˆ°èµ·è·‘çº¿
       kp1=80;
     lastpiancha_4=lastpiancha_3;
     lastpiancha_3=lastpiancha_2;
     lastpiancha_2=lastpiancha_1;
     lastpiancha_1=duojijiaodu;
     duojijiaodu=my_piancha; 
-    servo();//¶æ»ú¿ØÖÆº¯Êı
+    servo();//èˆµæœºæ§åˆ¶å‡½æ•°
 }
