@@ -581,9 +581,10 @@ void lkcongzhongjiansaomiao()
 			{
 				cur_R_ready_rest_flag = 1;            //内圆标志
 			}
-		if(cur_R_diyi_time_flag > 60) 
-		{     //第一段找到后0.4s后自动清空  防止第一段误判且没有找到内圆 一直保留第一段标志
-			cur_R_diyi_flag = 0;}
+			if(cur_R_diyi_time_flag > 60) 
+			{     //第一段找到后0.4s后自动清空  防止第一段误判且没有找到内圆 一直保留第一段标志
+				cur_R_diyi_flag = 0;
+			}
 		}
 		else
 		{
@@ -672,6 +673,11 @@ void lkcongzhongjiansaomiao()
 		cur_R_real_rest_flag = 0;             //出圆环标志清空
     }
       
+
+
+
+
+
 
 
 
@@ -806,21 +812,29 @@ void lkcongzhongjiansaomiao()
         cur_L_real_rest_flag = 0;             //出圆环标志清空
       }
   
+
+
+
+
+
+
+
+
   
-/****************************圆环减速********///////////////////////////////////////////////////////**/
+/****************************圆环减速****************************/
 
      /***********上面是检测圆环，下面开始操作圆环************************/
   
     
     if(guai_flag && guai_flag<=15)//电机减速反转的时间 5ms*30=150ms
     {
-         guai_flag++;
+        guai_flag++;
 
-         if(guai_flag&&guai_flag<=15)//轮子拐弯保持的时间
-         {
+        if(guai_flag&&guai_flag<=15)//轮子拐弯保持的时间
+        {
            //huaxian3(9,75,shizidiyidian,currentzhongjian[shizidiyidian+4]);
            ruyuanhuan_flag=1;
-         }
+        }
     }
     else
     {
