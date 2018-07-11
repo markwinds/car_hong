@@ -504,177 +504,181 @@ void lkcongzhongjiansaomiao()
 
       } 
       
+
+
+
+
+
+
       //********************************************************圆环检测*******************************************************
-      yuan_diu=1;
-      jieduan=0;
-      qishihang=0;
-      street_len=0; //赛道长度
-      street_width=0;//赛宽
-        cur_R_ready_time_flag++;
-        cur_R_real_time_flag++; 
-        cur_L_ready_time_flag++;
-        cur_L_real_time_flag++;   
+	//-------------------圆环参数初始化----------------------
+	yuan_diu=1;
+	jieduan=0;
+	qishihang=0;
+	street_len=0; //赛道长度
+	street_width=0;//赛宽
+	cur_R_ready_time_flag++;
+	cur_R_real_time_flag++; 
+	cur_L_ready_time_flag++;
+	cur_L_real_time_flag++;   
 
 
 
-        cur_R_diyi_time_flag++;
-        cur_R_nei_time_flag++;
-        cur_L_diyi_time_flag++;
-        cur_L_nei_time_flag++;  
-      /*扫赛道长度*/
-      for(int i=55;i>0;i--)
-      {
-              if(imgyiwei[i][39]!=0)
-              {
-                  street_len++;
-              }
-              else
-              {
-                break;
-              }
-      }
-      for(int i=39;i<79;i++)
-      {
-         if(imgyiwei[35][i]==0 || i==78)
-         {
-             street_width=i;
-             break;
-         }
-      }
-      for(int i=39;i>0;i--)
-      {
-         if(imgyiwei[35][i]==0 || i == 1)
-         {
-             street_width-=i;
-             break;
-         }
+	cur_R_diyi_time_flag++;
+	cur_R_nei_time_flag++;
+	cur_L_diyi_time_flag++;
+	cur_L_nei_time_flag++;  
 
-      }
-      
-      int i=35;
-      //jiji=street_width;
-      if(yuan_diu == 1 && i == 35)    //右圆环
-      {
-        //jiji++;
-        //在35行36行处左边不丟线,右边丟线.赛道长度大于46.宽度大于50.35行左边赛道在[5,25]范围内.
-        if(shaobudaozuo_flag[i] ==1 && shaobudaozuo_flag[i+2] ==1 && shaobudaoyou_flag[i]==0 &&shaobudaoyou_flag[i+2]==0
-        && street_len >46 && street_width>50 && left_heixian[i]>5 && left_heixian[i]<25)
-        {          
-          cur_R_ready_flag = 1;
-          
-        }
-        else
-          ;
-        
-        if(cur_R_ready_flag||cur_R_diyi_flag) //交换第一段标志
-        {
-          cur_R_ready_flag = 0;                //标志交换，清空第一段，多清空一次，防止bug
-          cur_R_diyi_flag = 1;                 //第一段标志   
-          
-          //在0.4秒内,在35行36行处右边左边都不丟线,左边赛道在[5,25]范围内,赛道长度大于43.
-          if(cur_R_diyi_flag && shaobudaoyou_flag[i]==1 && shaobudaoyou_flag[i+2] && shaobudaozuo_flag[i]==1
-          &&shaobudaozuo_flag[i+2]==1 && street_len>43 &&left_heixian[i]>5 && left_heixian[i]<25)
-          {
-            cur_R_ready_rest_flag = 1;            //内圆标志
-            //jiji++;
-            }
-          else ;
-          if(cur_R_diyi_time_flag > 60) {     //第一段找到后0.4s后自动清空  防止第一段误判且没有找到内圆 一直保留第一段标志
-              cur_R_diyi_flag = 0;}
-        }
-        else
-        {
-          cur_R_diyi_flag = 0;
-          cur_R_diyi_time_flag = 0;
-        }
-       //?
-        if(cur_R_ready_rest_flag||cur_R_nei_flag) //交换内圆标志 第一段和内圆准备标志全清空
-        {
-          
-          cur_R_diyi_flag = 0;
-          cur_R_ready_rest_flag = 0;
-          cur_R_nei_flag = 1;         
-          //在的二段后0.4秒内:在35行36行处左边不丟线,右边丟线.赛道长度大于40.宽度大于50.35行左边赛道在[10,30]范围内.
-          if(1)//(cur_R_nei_flag && shaobudaozuo_flag[i]==1 && shaobudaozuo_flag[i+2]==1 && shaobudaoyou_flag[i]==0
-          //&&shaobudaozuo_flag[i+2]==0 && street_len>40 && street_width>50 && left_heixian[i]>10 && left_heixian[i]<30)//
-          {                             
-            cur_R_real_flag = 1;  
-            //jiji++;
-            }            //第二段丢线标志            
-          if(cur_R_nei_time_flag > 60) {     //第内圆找到后0.4s后自动清空  防止内圆误判且没有找到第二段 一直保留内圆标志
-              cur_R_nei_flag = 0;}          
-        }
-        else 
-        {
-          cur_R_nei_flag = 0;
-          cur_R_nei_time_flag = 0;
-        }
-      }
-      /*右准确识别*/
-      if(cur_R_real_flag||cur_R_real_delay_flag)   //交换第二段标志，即圆环总标志
-      { 
-        //led(LED1, LED_ON);
-        cur_R_nei_flag = 0;
-        cur_R_real_flag = 0;
-        cur_R_real_CH_flag=0;        
-        cur_R_real_delay_flag = 1;                 //圆环总标志  
-        guai_flag=1;
-        //papa++;
-        
+	/*扫赛道长度*/
+	for(int i=55;i>0;i--)
+	{
+		if(imgyiwei[i][39]!=0)
+		{
+			street_len++;
+		}
+		else
+		{
+			break;
+		}
+	}
+	for(int i=39;i<79;i++)		//扫赛道的宽度
+	{
+		if(imgyiwei[35][i]==0 || i==78)
+		{
+			street_width=i;
+			break;
+		}
+	}
+	for(int i=39;i>0;i--)
+	{
+		if(imgyiwei[35][i]==0 || i == 1)
+		{
+			street_width-=i;
+			break;
+		}
+	}
+    
+
+	//---------------------------右圆环判断----------------------
+	int i=35;
+	if(yuan_diu == 1 && i == 35)    //右圆环
+	{
+		//在35行36行处左边不丟线,右边丟线.赛道长度大于46.宽度大于50.35行左边赛道在[5,25]范围内.
+		if(shaobudaozuo_flag[i] ==1 && shaobudaozuo_flag[i+2] ==1 && shaobudaoyou_flag[i]==0 &&shaobudaoyou_flag[i+2]==0
+		&& street_len >46 && street_width>50 && left_heixian[i]>5 && left_heixian[i]<25)
+		{          
+			cur_R_ready_flag = 1;
+		}
+
+		if(cur_R_ready_flag||cur_R_diyi_flag) //交换第一段标志
+		{
+			cur_R_ready_flag = 0;                //标志交换，清空第一段，多清空一次，防止bug
+			cur_R_diyi_flag = 1;                 //第一段标志   
+		
+			//在0.4秒内,在35行36行处右边左边都不丟线,左边赛道在[5,25]范围内,赛道长度大于43.
+			if(cur_R_diyi_flag && shaobudaoyou_flag[i]==1 && shaobudaoyou_flag[i+2] && shaobudaozuo_flag[i]==1
+			&&shaobudaozuo_flag[i+2]==1 && street_len>43 &&left_heixian[i]>5 && left_heixian[i]<25)
+			{
+				cur_R_ready_rest_flag = 1;            //内圆标志
+			}
+		if(cur_R_diyi_time_flag > 60) 
+		{     //第一段找到后0.4s后自动清空  防止第一段误判且没有找到内圆 一直保留第一段标志
+			cur_R_diyi_flag = 0;}
+		}
+		else
+		{
+			cur_R_diyi_flag = 0;
+			cur_R_diyi_time_flag = 0;
+		}
+		if(cur_R_ready_rest_flag||cur_R_nei_flag) //交换内圆标志 第一段和内圆准备标志全清空
+		{
+			
+			cur_R_diyi_flag = 0;
+			cur_R_ready_rest_flag = 0;
+			cur_R_nei_flag = 1;         
+			//在的二段后0.4秒内:在35行36行处左边不丟线,右边丟线.赛道长度大于40.宽度大于50.35行左边赛道在[10,30]范围内.
+			if(1)//(cur_R_nei_flag && shaobudaozuo_flag[i]==1 && shaobudaozuo_flag[i+2]==1 && shaobudaoyou_flag[i]==0
+			//&&shaobudaozuo_flag[i+2]==0 && street_len>40 && street_width>50 && left_heixian[i]>10 && left_heixian[i]<30)//
+			{                             
+			cur_R_real_flag = 1;  
+			//jiji++;
+			}            //第二段丢线标志            
+			if(cur_R_nei_time_flag > 60) {     //第内圆找到后0.4s后自动清空  防止内圆误判且没有找到第二段 一直保留内圆标志
+				cur_R_nei_flag = 0;}          
+		}
+		else 
+		{
+			cur_R_nei_flag = 0;
+			cur_R_nei_time_flag = 0;
+		}
+	}
+	/*右准确识别*/
+	if(cur_R_real_flag||cur_R_real_delay_flag)   //交换第二段标志，即圆环总标志
+	{ 
+		cur_R_nei_flag = 0;
+		cur_R_real_flag = 0;
+		cur_R_real_CH_flag=0;        
+		cur_R_real_delay_flag = 1;                 //圆环总标志  
+		guai_flag=1;
         //33行大概0.4秒左右延时后,如果全是空,判断出环。
-        /****************************************/ 
+
         i=33;
-//       if(imgyiwei[50][0]!=0 && imgyiwei[45][0]!=0 && imgyiwei[40][0]!=0 && imgyiwei[34][0]!=0 &&
-//          imgyiwei[28][0]==0 && imgyiwei[20][0]==0 && imgyiwei[10][0]==0 &&
-//          imgyiwei[5][79]==0 && imgyiwei[10][79]==0 && imgyiwei[50][79]==0 && imgyiwei[40][79]==0 &&
-//          imgyiwei[20][79]!=0 && imgyiwei[25][79]!=0 && imgyiwei[30][79]!=0 
-//          )
-//       {
-//           cur_R_real_rest_flag = 1;        //出圆环标志
-//           jiji++;
-//        
-//        }
+		//       if(imgyiwei[50][0]!=0 && imgyiwei[45][0]!=0 && imgyiwei[40][0]!=0 && imgyiwei[34][0]!=0 &&
+		//          imgyiwei[28][0]==0 && imgyiwei[20][0]==0 && imgyiwei[10][0]==0 &&
+		//          imgyiwei[5][79]==0 && imgyiwei[10][79]==0 && imgyiwei[50][79]==0 && imgyiwei[40][79]==0 &&
+		//          imgyiwei[20][79]!=0 && imgyiwei[25][79]!=0 && imgyiwei[30][79]!=0 
+		//          )
+		//       {
+		//           cur_R_real_rest_flag = 1;        //出圆环标志
+		//           jiji++;
+		//        
+		//        }
         
         //if(left_heixian[15]>left_heixian[12] && left_heixian[15]>left_heixian[18] && i==33 &&cur_R_real_time_flag>40)
-          if(
-             imgyiwei[18][0]!=0 && imgyiwei[20][0]!=0 && imgyiwei[22][0]!=0 && imgyiwei[24][0]!=0 &&
-             imgyiwei[10][0]==0 && imgyiwei[14][0]==0 && imgyiwei[34][0]==0 && imgyiwei[40][0]==0 &&
-             shaobudaozuo_flag[18]==0 && shaobudaozuo_flag[20]==0 && shaobudaozuo_flag[22]==0 &&
-             shaobudaozuo_flag[24]==0
-               )
-        {
-                  cur_R_real_rest_flag = 1;        //出圆环标志
-                  chuhuan_you=1;
-                  //jiji++;
-          }
-//          for(int j = 0; j <= 79; j++){
-//            if(imgyiwei[i][j]){
-//              cur_R_real_CH_flag++;
-//              if(cur_R_real_CH_flag>55){
-//                cur_R_real_rest_flag = 1;        //出圆环标志
-//               
-//                  jiji++;
-//                break;}}}}
+		if(
+			imgyiwei[18][0]!=0 && imgyiwei[20][0]!=0 && imgyiwei[22][0]!=0 && imgyiwei[24][0]!=0 &&
+			imgyiwei[10][0]==0 && imgyiwei[14][0]==0 && imgyiwei[34][0]==0 && imgyiwei[40][0]==0 &&
+			shaobudaozuo_flag[18]==0 && shaobudaozuo_flag[20]==0 && shaobudaozuo_flag[22]==0 &&
+			shaobudaozuo_flag[24]==0
+			)
+		{
+				cur_R_real_rest_flag = 1;        //出圆环标志
+				chuhuan_you=1;
+		}
+		//          for(int j = 0; j <= 79; j++){
+		//            if(imgyiwei[i][j]){
+		//              cur_R_real_CH_flag++;
+		//              if(cur_R_real_CH_flag>55){
+		//                cur_R_real_rest_flag = 1;        //出圆环标志
+		//               
+		//                  jiji++;
+		//                break;}}}}
         
 
         if(cur_R_real_rest_flag) cur_R_real_time_flag1++;  //找到出圆环标志，开始计数
         
         i=21;
-        if(i==21&&cur_R_real_time_flag1>40&&shaobudaozuo_flag[i]==1 && shaobudaoyou_flag[i]==1)
-//      if(i==21&&cur_R_real_rest_flag&&cur_R_real_time_flag1>40&&!Left_Add_Flag[i]&&!Left_Add_Flag[i+2]&&Left_Add_Line[i]>50&&Left_Add_Line[i+2]<60)
+        if(cur_R_real_time_flag1>40&&shaobudaozuo_flag[i]==1 && shaobudaoyou_flag[i]==1)
+		//      if(i==21&&cur_R_real_rest_flag&&cur_R_real_time_flag1>40&&!Left_Add_Flag[i]&&!Left_Add_Flag[i+2]&&Left_Add_Line[i]>50&&Left_Add_Line[i+2]<60)
         {       
           cur_R_real_delay_flag = 0;
         }         //圆环结束，总标志清空      
-      }
-      else
-      {
-        //led(LED1, LED_OFF);
-        cur_R_real_delay_flag = 0;            //圆环总标志清空
-        cur_R_real_time_flag = 0;             //圆环总标志找到后，开始计数，作为入环的延时
-        cur_R_real_time_flag1 = 0;
-        cur_R_real_rest_flag = 0;             //出圆环标志清空
-      }
+    }
+	else
+	{
+		cur_R_real_delay_flag = 0;            //圆环总标志清空
+		cur_R_real_time_flag = 0;             //圆环总标志找到后，开始计数，作为入环的延时
+		cur_R_real_time_flag1 = 0;
+		cur_R_real_rest_flag = 0;             //出圆环标志清空
+    }
       
+
+
+
+
+
+
+
       /***********************************************************************************/ //左圆环
       i=35;
           if(yuan_diu == 1 && i == 35)
